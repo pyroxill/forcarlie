@@ -28,7 +28,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       '3': '/lovable-uploads/59575ba7-1a5e-454f-a849-9e942e8b9ce6.png', // Original piece 1
       '4': '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png', // Original piece 5
       '5': '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png', // Original piece 4
-      '6': '/Piece6.png', // Placeholder for piece 6 until provided
+      '6': '/lovable-uploads/d08f0ce6-0963-40f1-873e-3e2b4879817b.png', // New piece 6
       '7': '/Piece7.png',
       '8': '/Piece8.png',
       '9': '/Piece9.png'
