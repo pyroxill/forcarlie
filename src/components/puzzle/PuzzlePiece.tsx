@@ -18,7 +18,6 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
 
   const pieceNumber = id.split(' ')[1];
   
-  // Randomized image mapping
   const getImagePath = (number: string) => {
     const imageMapping: { [key: string]: string } = {
       '1': '/lovable-uploads/71eb8d54-dfa7-4b55-83fe-bd8a8f00df4e.png',
@@ -40,49 +39,46 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     const row = Math.ceil(pieceNum / 3);
     const col = ((pieceNum - 1) % 3) + 1;
     
-    // Determine which edges should have tabs or slots
     const edges = {
-      top: row > 1, // Has top connection if not in first row
-      right: col < 3, // Has right connection if not in last column
-      bottom: row < 3, // Has bottom connection if not in last row
-      left: col > 1 // Has left connection if not in first column
+      top: row > 1,
+      right: col < 3,
+      bottom: row < 3,
+      left: col > 1
     };
 
     return {
       clipPath: `path("${generatePuzzlePath(edges)}")`,
-      filter: 'drop-shadow(0 1px 2px rgb(0 0 0 / 0.3))'
+      filter: 'drop-shadow(0 1px 2px rgb(0 0 0 / 0.3))',
+      border: '2px solid rgba(255, 255, 255, 0.5)',
+      borderRadius: '4px',
+      overflow: 'hidden'
     };
   };
 
-  // Generate SVG-like path for puzzle piece shape
   const generatePuzzlePath = (edges: { top: boolean; right: boolean; bottom: boolean; left: boolean }) => {
     const size = 100;
     const tabSize = 20;
     
     let path = `M 0,0`;
     
-    // Top edge
     if (edges.top) {
       path += ` h ${size * 0.3} q ${tabSize},0 ${tabSize},-${tabSize} q ${tabSize},-${tabSize} ${tabSize},0 h ${size * 0.3}`;
     } else {
       path += ` h ${size}`;
     }
     
-    // Right edge
     if (edges.right) {
       path += ` v ${size * 0.3} q 0,${tabSize} ${tabSize},${tabSize} q ${tabSize},${tabSize} 0,${tabSize} v ${size * 0.3}`;
     } else {
       path += ` v ${size}`;
     }
     
-    // Bottom edge
     if (edges.bottom) {
       path += ` h -${size * 0.3} q -${tabSize},0 -${tabSize},${tabSize} q -${tabSize},${tabSize} -${tabSize},0 h -${size * 0.3}`;
     } else {
       path += ` h -${size}`;
     }
     
-    // Left edge
     if (edges.left) {
       path += ` v -${size * 0.3} q 0,-${tabSize} -${tabSize},-${tabSize} q -${tabSize},-${tabSize} 0,-${tabSize} v -${size * 0.3}`;
     } else {
@@ -108,7 +104,6 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
         }
       }}
     >
-      {/* Base image layer */}
       <img
         src={getImagePath(pieceNumber)}
         alt={`Puzzle piece ${pieceNumber}`}
@@ -119,7 +114,6 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
           console.log('Attempted to load:', getImagePath(pieceNumber));
         }}
       />
-      {/* Overlay with puzzle piece shape */}
       <div
         className="absolute inset-0"
         style={getPieceShape(parseInt(pieceNumber))}
