@@ -83,16 +83,47 @@ const Navigation = () => {
   );
 };
 
+const FlowerAnimation = ({ flowerType }: { flowerType: 'daisy' | 'rose' | 'hoya' | 'lily' }) => {
+  const petalCount = {
+    daisy: 8,
+    rose: 12,
+    hoya: 5,
+    lily: 6
+  };
+
+  return (
+    <div className={`animate-flower ${flowerType}`}>
+      <div className="flower-stem"></div>
+      <div className="flower-leaf left"></div>
+      <div className="flower-leaf right"></div>
+      {[...Array(petalCount[flowerType])].map((_, i) => (
+        <div
+          key={`petal-${i}`}
+          className="flower-petal"
+          style={{
+            '--rotation': `${i * (360 / petalCount[flowerType])}deg`,
+            animation: `petal-grow 1.5s ease-out ${i * 0.1}s forwards`
+          } as React.CSSProperties}
+        ></div>
+      ))}
+      <div className="flower-center"></div>
+    </div>
+  );
+};
+
 const App = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [showUnlockAnimation, setShowUnlockAnimation] = useState(false);
-  const [flowerType, setFlowerType] = useState<'daisy' | 'rose' | 'hoya' | 'lily'>('daisy');
+  const [flowers, setFlowers] = useState<Array<'daisy' | 'rose' | 'hoya' | 'lily'>>([]);
 
   const handleUnlock = () => {
     setShowUnlockAnimation(true);
-    // Randomly select a flower type
-    const flowers = ['daisy', 'rose', 'hoya', 'lily'] as const;
-    setFlowerType(flowers[Math.floor(Math.random() * flowers.length)]);
+    // Create an array of 3 random flowers
+    const flowerTypes = ['daisy', 'rose', 'hoya', 'lily'] as const;
+    const randomFlowers = Array(3).fill(null).map(() => 
+      flowerTypes[Math.floor(Math.random() * flowerTypes.length)]
+    );
+    setFlowers(randomFlowers);
     setTimeout(() => {
       setShowUnlockAnimation(false);
       setIsUnlocked(true);
@@ -107,25 +138,21 @@ const App = () => {
         {!isUnlocked && <PasswordProtection onUnlock={handleUnlock} />}
         {showUnlockAnimation && (
           <div className="unlock-animation">
-            <div className={`animate-flower ${flowerType}`}>
-              <div className="flower-stem"></div>
-              <div className="flower-leaf left" style={{ '--rotation': '-30deg' } as React.CSSProperties}></div>
-              <div className="flower-leaf right" style={{ '--rotation': '30deg' } as React.CSSProperties}></div>
-              {[...Array(flowerType === 'daisy' ? 8 : flowerType === 'rose' ? 12 : flowerType === 'hoya' ? 5 : 6)].map((_, i) => (
-                <div
-                  key={`petal-${i}`}
-                  className="flower-petal"
-                  style={{
-                    '--rotation': `${i * (360 / (flowerType === 'daisy' ? 8 : flowerType === 'rose' ? 12 : flowerType === 'hoya' ? 5 : 6))}deg`,
-                    animation: `petal-grow 1.5s ease-out ${i * 0.1}s forwards`
-                  } as React.CSSProperties}
-                ></div>
+            <div className="flowers-container">
+              {flowers.map((flowerType, index) => (
+                <div key={index} className="flower-wrapper" style={{
+                  position: 'absolute',
+                  left: `${25 + (index * 25)}%`,
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)'
+                }}>
+                  <FlowerAnimation flowerType={flowerType} />
+                </div>
               ))}
-              <div className="flower-center"></div>
             </div>
           </div>
         )}
-        <div className={`transition-opacity duration-1000 ${isUnlocked ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`transition-opacity duration-1000 ${isUnlocked ? 'opacity-100' : 'opacity-0'} ${showUnlockAnimation ? 'hidden' : ''}`}>
           <BrowserRouter>
             <FloatingElements />
             <Navigation />
