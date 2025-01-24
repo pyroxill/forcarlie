@@ -89,7 +89,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       path += ` v -${size}`;
     }
     
-    return path + ' Z');
+    return path + ' Z';  // Removed the extra parenthesis here
   };
 
   return (
