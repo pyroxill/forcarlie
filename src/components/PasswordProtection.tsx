@@ -14,9 +14,14 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     if (password === "08/12/2024") {
       setIsUnlocking(true);
       setShowGrowingHeart(true);
+      
+      // Try to play the unlock sound
       const audio = new Audio("/unlock-sound.mp3");
       audio.volume = 0.3;
-      audio.play().catch(error => console.log("Audio playback failed:", error));
+      audio.play().catch(error => {
+        console.log("Audio playback failed:", error);
+        // Continue with unlock animation even if sound fails
+      });
       
       setTimeout(() => {
         onUnlock();

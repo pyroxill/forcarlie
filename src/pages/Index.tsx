@@ -1,28 +1,46 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Timeline from "@/components/Timeline";
 import RelationshipTimer from "@/components/RelationshipTimer";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Index = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // You can add your background music file to the public folder
-    // and reference it here
-    if (audioRef.current) {
-      audioRef.current.volume = 0.3; // Set initial volume to 30%
-      audioRef.current.play().catch(error => {
-        console.log("Audio autoplay failed:", error);
-      });
-    }
-  }, []);
+    const handleUserInteraction = () => {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.volume = 0.3;
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            // Remove the event listeners once music starts
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
+          })
+          .catch(error => {
+            console.log("Audio playback failed:", error);
+          });
+      }
+    };
+
+    // Add event listeners for user interaction
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('keydown', handleUserInteraction);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+    };
+  }, [isPlaying]);
 
   return (
     <div className="min-h-screen relative">
       <audio
         ref={audioRef}
         loop
-        src="/your-background-music.mp3" // Add your music file here
+        src="/background-music.mp3"
       />
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="mb-8">
