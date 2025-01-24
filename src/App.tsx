@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Message from "./pages/Message";
 import MySongToYou from "./pages/MySongToYou";
 import Reasons from "./pages/Reasons";
+import Reassurance from "./pages/Reassurance";
 import PasswordProtection from "./components/PasswordProtection";
 
 const queryClient = new QueryClient();
@@ -72,6 +73,9 @@ const Navigation = () => {
             <Link to="/reasons" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> 24 Reasons 💝
             </Link>
+            <Link to="/reassurance" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+              <Heart className="inline-block mr-1" size={14} /> Reassurance 🫂
+            </Link>
           </div>
         </div>
       </div>
@@ -111,6 +115,7 @@ const App = () => {
                 <Route path="/message" element={<Message />} />
                 <Route path="/my-song" element={<MySongToYou />} />
                 <Route path="/reasons" element={<Reasons />} />
+                <Route path="/reassurance" element={<Reassurance />} />
                 <Route path="/" element={<Index />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
