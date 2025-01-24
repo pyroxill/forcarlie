@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Timeline from "@/components/Timeline";
+import RelationshipTimer from "@/components/RelationshipTimer";
 import { useEffect, useRef } from "react";
 
 const Index = () => {
@@ -24,6 +25,9 @@ const Index = () => {
         src="/your-background-music.mp3" // Add your music file here
       />
       <div className="container mx-auto px-4 py-8 relative z-10">
+        <div className="mb-8">
+          <RelationshipTimer />
+        </div>
         <Timeline />
       </div>
     </div>
