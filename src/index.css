@@ -56,40 +56,32 @@
 
 .big-heart {
   position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
   color: white;
   animation: heart-grow 10s ease-in-out forwards;
 }
 
-.card-gradient {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+.heart-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
 }
 
-.password-protection {
-  @apply fixed inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-center;
-  background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(234, 56, 76, 0.1) 100%);
-}
-
-.password-container {
-  @apply relative bg-white/20 p-8 rounded-2xl backdrop-blur-md border border-white/20;
-  animation: fade-scale-in 0.5s ease-out forwards;
-  transition: opacity 0.5s ease-out;
-}
-
-@keyframes fade-scale-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.heart-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 10;
+  white-space: nowrap;
 }
 
 .floating-hearts {
@@ -184,3 +176,4 @@
     transform: scale(1);
   }
 }
+
