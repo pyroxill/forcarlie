@@ -29,7 +29,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       '4': '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png', // Original piece 5
       '5': '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png', // Original piece 4
       '6': '/lovable-uploads/d08f0ce6-0963-40f1-873e-3e2b4879817b.png', // New piece 6
-      '7': '/Piece7.png',
+      '7': '/lovable-uploads/9676ea56-3810-4e87-adac-ff22942626c8.png', // New piece 7
       '8': '/Piece8.png',
       '9': '/Piece9.png'
     };
