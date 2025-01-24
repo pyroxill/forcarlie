@@ -6,7 +6,7 @@
   :root {
     --background: 0 0% 98%;
     --foreground: 340 40% 40%;
-    --card: 0 0% 98%;
+    --card: 346 84% 61%;
     --card-foreground: 340 40% 40%;
     --popover: 0 0% 98%;
     --popover-foreground: 340 40% 40%;
@@ -60,7 +60,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
+  background: transparent;
+}
+
+.heart-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .big-heart {
@@ -76,10 +83,11 @@
   top: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 2rem;
+  font-size: 0.4em;
   font-weight: bold;
   z-index: 10;
   white-space: nowrap;
+  animation: heart-grow 10s ease-in-out forwards;
 }
 
 .password-protection {

@@ -20,7 +20,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       
       setTimeout(() => {
         onUnlock();
-      }, 10000); // Match the heart animation duration
+      }, 10000);
     } else {
       toast({
         variant: "destructive",
@@ -31,10 +31,10 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   };
 
   return (
-    <div className={`password-protection ${isUnlocking ? "bg-black" : ""}`}>
+    <div className="password-protection">
       {showGrowingHeart && (
         <div className="heart-container">
-          <div className="relative">
+          <div className="heart-wrapper">
             <Heart className="big-heart" size={48} />
             <span className="heart-text">C+J</span>
           </div>
