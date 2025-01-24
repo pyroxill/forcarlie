@@ -40,14 +40,14 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
           </div>
         </div>
       )}
-      <div className={`password-container transition-opacity duration-500 ${isUnlocking ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+      <div className={`password-container transition-all duration-500 ${isUnlocking ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"}`}>
         <div className="flex flex-col items-center gap-6">
           <div className="relative">
             <Heart className="w-16 h-16 text-white animate-pulse" />
           </div>
           <div className="text-white text-center mb-4">
             <h2 className="text-xl font-semibold mb-2">Enter Password 🔒</h2>
-            <p className="text-sm opacity-80">Format: MM/DD/YYYY</p>
+            <p className="text-sm opacity-80">Hint: Our Anniversary ❤️</p>
           </div>
           <form onSubmit={handleSubmit} className="w-64">
             <Input
