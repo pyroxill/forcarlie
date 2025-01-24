@@ -49,11 +49,11 @@ const Reasons = () => {
   return (
     <div className="min-h-screen py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-center text-3xl font-bold text-white mb-12">
+        <h1 className="text-center text-3xl font-bold text-white mb-12 fixed top-32 left-0 right-0 z-10">
           24 Reasons I Love You
         </h1>
         
-        <div className="relative flex justify-center items-center min-h-[40vh] md:min-h-[60vh]">
+        <div className="relative flex justify-center items-center min-h-[40vh] md:min-h-[60vh] mt-16">
           <motion.div
             className="cursor-pointer relative"
             whileHover={{ scale: 1.1 }}
@@ -69,19 +69,39 @@ const Reasons = () => {
             </span>
           </motion.div>
 
-          <div className="fixed inset-0 pointer-events-none flex flex-wrap justify-center items-center gap-3 p-4 md:p-8 overflow-hidden">
+          <div className="fixed inset-0 pointer-events-none">
             <AnimatePresence>
-              {displayedReasons.map((index) => (
-                <motion.div
-                  key={index}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  className="text-white text-center p-2 md:p-4 max-w-[250px] md:max-w-xs text-sm md:text-base"
-                >
-                  {reasons[index]}
-                </motion.div>
-              ))}
+              {displayedReasons.map((index) => {
+                const isLeft = Math.random() > 0.5;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ 
+                      x: isLeft ? -300 : 300,
+                      y: -100,
+                      opacity: 0 
+                    }}
+                    animate={{ 
+                      x: 0,
+                      y: Math.random() * -300 - 100,
+                      opacity: 1 
+                    }}
+                    exit={{ 
+                      x: isLeft ? 300 : -300,
+                      y: -400,
+                      opacity: 0 
+                    }}
+                    transition={{ duration: 4 }}
+                    className="absolute text-white text-center p-4 whitespace-nowrap"
+                    style={{
+                      left: isLeft ? '10%' : '60%',
+                      top: '50%'
+                    }}
+                  >
+                    {reasons[index]}
+                  </motion.div>
+                );
+              })}
             </AnimatePresence>
           </div>
         </div>
