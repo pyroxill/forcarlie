@@ -16,7 +16,7 @@ const categories = {
       "I had a rough day",
     ],
     responses: [
-      "Remember how much I love you. You're the most precious person in my life, and seeing you sad breaks my heart. Let me hold you tight and make it better. ❤️",
+      "Remember how much I love you. Remember how good it feels when we see each other after being apart for ages we get to experience that again soon. You're the most amazing person in my life and seeing you sad breaks my heart. You know you can call me whenever, NO MATTER WHAT. If you need me call me! ❤️",
     ]
   },
   "Anxious Thoughts 😟": {
@@ -26,7 +26,7 @@ const categories = {
       "I'm stressed about work",
     ],
     responses: [
-      "Take a deep breath, my love. We're in this together, and I'll always be here to support you. You're stronger than you know, and I believe in you completely. 🫂",
+      "Take a deep breath, I'll always be here to support you no matter what i'm always by your side. You're not alone anymore, you have me whenever you need. Don't be affraid to ask for help, i will do all that for free your my girl. You're stronger than you know, and I believe in you completely. You can achieve anything, your so damm smart. 🫂",
     ]
   },
   "Need Reassurance 🥺": {
@@ -36,17 +36,7 @@ const categories = {
       "Will you always be there?",
     ],
     responses: [
-      "My darling, you are my everything. Every day I fall more in love with you, and my heart belongs to you completely. Never doubt my love - it's eternal and unconditional. 💝",
-    ]
-  },
-  "Just Testing 🧪": {
-    options: [
-      "Test message 1",
-      "Test message 2",
-      "Test message 3",
-    ],
-    responses: [
-      "This is a test response! 🎯",
+      "Carlie you are my everything. Every day I fall more in love with you, and my heart belongs to you completely. Never doubt my love for you, i'm forever greatful for having you in  my life. I'm sorry if i have done something to upset you, i promise i didn't mean it. I'd never mean to hurt you i could never hurt you, it would kill me to hurt you. Your too good for this world. My love for you is eternal and unconditional. 💝",
     ]
   }
 };
