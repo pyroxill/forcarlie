@@ -31,19 +31,19 @@ const FutureGoals = () => {
     <div className="min-h-screen bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 py-8">
       <div className="container mx-auto px-4">
         <Link to="/">
-          <Button variant="outline" className="mb-6">
+          <Button variant="outline" className="mb-6 bg-black/80 text-love hover:bg-love hover:text-white border-love">
             <Heart className="mr-2 h-4 w-4" /> Back to Home
           </Button>
         </Link>
         
-        <Card className="mb-8 bg-white/80 backdrop-blur">
+        <Card className="mb-8 bg-black/80 backdrop-blur border-love">
           <CardHeader>
-            <CardTitle className="text-center text-3xl font-bold text-pink-600">
+            <CardTitle className="text-center text-3xl font-bold text-love">
               Our Journey Ahead ✨
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
-            <p className="text-gray-700 mb-8">
+            <p className="text-gray-200 mb-8">
               Every day with you makes me excited for our future together. Here are some dreams I want to share with you...
             </p>
           </CardContent>
@@ -51,15 +51,15 @@ const FutureGoals = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {goals.map((goal, index) => (
-            <Card key={index} className="transform transition-all duration-300 hover:scale-105 bg-white/80 backdrop-blur">
+            <Card key={index} className="transform transition-all duration-300 hover:scale-105 bg-black/80 backdrop-blur border-love">
               <CardHeader>
-                <CardTitle className="text-xl font-semibold text-pink-600 flex items-center justify-center gap-2">
+                <CardTitle className="text-xl font-semibold text-love flex items-center justify-center gap-2">
                   <span className="text-2xl">{goal.icon}</span>
                   {goal.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-center">{goal.description}</p>
+                <p className="text-gray-200 text-center">{goal.description}</p>
               </CardContent>
             </Card>
           ))}
