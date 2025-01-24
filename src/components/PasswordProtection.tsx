@@ -44,7 +44,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "8/12/2024") {
+    if (password === "08/12/2024") {
       setIsUnlocking(true);
       fadeOutAndStop();
       setTimeout(() => {

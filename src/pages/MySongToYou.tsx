@@ -73,7 +73,7 @@ And in a moment, I knew you best`}
               />
             </div>
 
-            <Card className="card-gradient">
+            <div>
               <CardHeader>
                 <CardTitle className="text-center text-2xl font-bold text-white">
                   A Playlist Just for You
@@ -91,7 +91,7 @@ And in a moment, I knew you best`}
                   loading="lazy"
                 />
               </CardContent>
-            </Card>
+            </div>
           </CardContent>
         </Card>
       </div>

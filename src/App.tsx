@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Heart, Menu, X } from "lucide-react";
 import Index from "./pages/Index";
 import Message from "./pages/Message";
 import MySongToYou from "./pages/MySongToYou";
@@ -46,25 +46,38 @@ const FloatingElements = () => {
 };
 
 const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="modern-nav">
-      <div className="flex flex-row justify-center items-center space-x-2 md:space-x-4 px-2 md:px-4 w-full overflow-x-auto">
-        <Link to="/" className="nav-link text-sm md:text-base whitespace-nowrap">
-          <Heart className="inline-block mr-1" size={14} />
-          Home
-        </Link>
-        <Link to="/message" className="nav-link text-sm md:text-base whitespace-nowrap">
-          <Heart className="inline-block mr-1" size={14} />
-          Message
-        </Link>
-        <Link to="/my-song" className="nav-link text-sm md:text-base whitespace-nowrap">
-          <Heart className="inline-block mr-1" size={14} />
-          My Song
-        </Link>
-        <Link to="/reasons" className="nav-link text-sm md:text-base whitespace-nowrap">
-          <Heart className="inline-block mr-1" size={14} />
-          24 Reasons
-        </Link>
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center">
+          <button 
+            onClick={() => setIsOpen(!isOpen)} 
+            className="md:hidden text-white p-2"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          
+          <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto absolute md:relative left-0 top-16 md:top-0 bg-white/10 backdrop-blur-md md:bg-transparent md:backdrop-filter-none p-4 md:p-0`}>
+            <Link to="/" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+              <Heart className="inline-block mr-1" size={14} />
+              Home
+            </Link>
+            <Link to="/message" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+              <Heart className="inline-block mr-1" size={14} />
+              Message
+            </Link>
+            <Link to="/my-song" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+              <Heart className="inline-block mr-1" size={14} />
+              Your Music
+            </Link>
+            <Link to="/reasons" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+              <Heart className="inline-block mr-1" size={14} />
+              24 Reasons
+            </Link>
+          </div>
+        </div>
       </div>
     </nav>
   );
