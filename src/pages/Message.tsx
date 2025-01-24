@@ -40,6 +40,19 @@ const Message = () => {
           </CardContent>
         </Card>
 
+        <div className="mb-8 flex justify-center space-x-4">
+          <Link to="/">
+            <Button variant="outline">
+              <Heart className="mr-2 h-4 w-4" /> Home
+            </Button>
+          </Link>
+          <Link to="/future-goals">
+            <Button variant="outline">
+              <Heart className="mr-2 h-4 w-4" /> Our Future Together
+            </Button>
+          </Link>
+        </div>
+
         <Card className="bg-white/80 backdrop-blur">
           <CardHeader>
             <CardTitle className="text-center text-2xl font-bold text-pink-600">
@@ -63,19 +76,6 @@ const Message = () => {
             </div>
           </CardContent>
         </Card>
-
-        <div className="mt-6 flex justify-center space-x-4">
-          <Link to="/">
-            <Button variant="outline">
-              <Heart className="mr-2 h-4 w-4" /> Home
-            </Button>
-          </Link>
-          <Link to="/future-goals">
-            <Button variant="outline">
-              <Heart className="mr-2 h-4 w-4" /> Our Future Together
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   );
