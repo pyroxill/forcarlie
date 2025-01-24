@@ -35,29 +35,61 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     return imageMapping[number];
   };
 
-  // Generate random jigsaw knob positions for each piece
-  const getKnobClasses = (pieceNum: number) => {
-    const positions = [
-      'before:top-1/2 before:-left-3',  // left
-      'after:left-1/2 after:-top-3',    // top
-      'before:top-1/2 before:-right-3', // right
-      'after:left-1/2 after:-bottom-3'  // bottom
-    ];
+  // Generate jigsaw tabs and slots for each piece
+  const getPieceShape = (pieceNum: number) => {
+    const row = Math.ceil(pieceNum / 3);
+    const col = ((pieceNum - 1) % 3) + 1;
     
-    // Use piece number to determine which sides get knobs
-    const hasKnob = {
-      top: pieceNum > 3,
-      right: pieceNum % 3 !== 0,
-      bottom: pieceNum <= 6,
-      left: pieceNum % 3 !== 1
+    // Determine which edges should have tabs or slots
+    const edges = {
+      top: row > 1, // Has top connection if not in first row
+      right: col < 3, // Has right connection if not in last column
+      bottom: row < 3, // Has bottom connection if not in last row
+      left: col > 1 // Has left connection if not in first column
     };
 
-    return cn(
-      hasKnob.left && 'before:absolute before:w-6 before:h-6 before:bg-white/90 before:rounded-full before:-translate-y-1/2 before:shadow-md before:border before:border-gray-200/50',
-      hasKnob.top && 'after:absolute after:w-6 after:h-6 after:bg-white/90 after:rounded-full after:-translate-x-1/2 after:shadow-md after:border after:border-gray-200/50',
-      hasKnob.right && 'before:absolute before:w-6 before:h-6 before:bg-white/90 before:rounded-full before:-translate-y-1/2 before:shadow-md before:border before:border-gray-200/50',
-      hasKnob.bottom && 'after:absolute after:w-6 after:h-6 after:bg-white/90 after:rounded-full after:-translate-x-1/2 after:shadow-md after:border after:border-gray-200/50'
-    );
+    return {
+      clipPath: `path("${generatePuzzlePath(edges)}")`,
+      filter: 'drop-shadow(0 1px 2px rgb(0 0 0 / 0.3))'
+    };
+  };
+
+  // Generate SVG-like path for puzzle piece shape
+  const generatePuzzlePath = (edges: { top: boolean; right: boolean; bottom: boolean; left: boolean }) => {
+    const size = 100;
+    const tabSize = 20;
+    
+    let path = `M 0,0`;
+    
+    // Top edge
+    if (edges.top) {
+      path += ` h ${size * 0.3} q ${tabSize},0 ${tabSize},-${tabSize} q ${tabSize},-${tabSize} ${tabSize},0 h ${size * 0.3}`;
+    } else {
+      path += ` h ${size}`;
+    }
+    
+    // Right edge
+    if (edges.right) {
+      path += ` v ${size * 0.3} q 0,${tabSize} ${tabSize},${tabSize} q ${tabSize},${tabSize} 0,${tabSize} v ${size * 0.3}`;
+    } else {
+      path += ` v ${size}`;
+    }
+    
+    // Bottom edge
+    if (edges.bottom) {
+      path += ` h -${size * 0.3} q -${tabSize},0 -${tabSize},${tabSize} q -${tabSize},${tabSize} -${tabSize},0 h -${size * 0.3}`;
+    } else {
+      path += ` h -${size}`;
+    }
+    
+    // Left edge
+    if (edges.left) {
+      path += ` v -${size * 0.3} q 0,-${tabSize} -${tabSize},-${tabSize} q -${tabSize},-${tabSize} 0,-${tabSize} v -${size * 0.3}`;
+    } else {
+      path += ` v -${size}`;
+    }
+    
+    return path + ' Z');
   };
 
   return (
@@ -67,18 +99,20 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
         'cursor-move transition-all duration-300 relative',
         initialSize === 'small' ? 'w-24 h-24' : 'w-32 h-32',
         isDragging ? 'opacity-50' : 'opacity-100',
-        position ? 'absolute' : 'relative',
-        getKnobClasses(parseInt(pieceNumber))
+        position ? 'absolute' : 'relative'
       )}
-      style={position ? {
-        left: position.x,
-        top: position.y,
-      } : undefined}
+      style={{
+        ...position && {
+          left: position.x,
+          top: position.y,
+        },
+        ...getPieceShape(parseInt(pieceNumber))
+      }}
     >
       <img
         src={getImagePath(pieceNumber)}
         alt={`Puzzle piece ${pieceNumber}`}
-        className="w-full h-full object-contain rounded-lg shadow-lg border-2 border-white/50"
+        className="w-full h-full object-cover"
         draggable={false}
         onError={(e) => {
           console.error('Image failed to load:', e);
