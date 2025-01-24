@@ -12,7 +12,7 @@ const Message = () => {
     setTimeout(() => {
       setShowLetters(false);
       setIsOpen(true);
-    }, 1000); // Changed from 2000ms to 1000ms
+    }, 1000);
   };
 
   return (
@@ -46,7 +46,7 @@ const Message = () => {
                       x: i === 0 ? -50 : 50,
                       rotate: i === 0 ? -45 : 45
                     }}
-                    transition={{ duration: 1, ease: "easeOut" }} // Changed from 2s to 1s
+                    transition={{ duration: 1, ease: "easeOut" }}
                   >
                     {letter}
                   </motion.div>
@@ -55,19 +55,22 @@ const Message = () => {
             )}
 
             {isOpen && (
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-white text-lg leading-relaxed"
               >
-                To my dearest, <br/><br/>
-                Every day with you feels like a beautiful dream come true. Your smile lights up my world, 
-                and your love makes everything better. I cherish every moment we spend together and look forward 
-                to creating countless more memories with you. You're not just my partner - you're my best friend, 
-                my confidante, and my greatest blessing. 💕
-                <br/><br/>
+                To Carlie, <br/><br/>
+                Meeting you was the best thing that ever happened to me but getting to know you, seeing the true you, the inner child in you has been the biggest honour of my life.
+                You've managed to heal parts of me i never believed could ever be healed and for that i am forever grateful. Not a second goes by where i am not thankful for you 
+                and the love you've shown me. You've changed my whole perspective on life and love. You are the best thing to ever happen to me truly, you showed me the world isn't as cruel as 
+                its made out to be or i believed it to be. You are so gorgeous and beautiful inside and out. I love your smile so much it's so perilous, i love your laugh it's so contagious, i 
+                love seeing you happy, it makes my day. You are everything to me. We maybe young but i know what i want and i want you. I want to spend the rest of my life with you. 
+                I want to be there for you when you're down and when you're happy. I want to be your rock, your shoulder to cry on, your best friend, your lover, your everything because your my 
+                everything. I love you so much Carlie, i love you more than words can describe. Don't ever change you are one of kind, so speical to me. I love you so much. I can't wait to see
+                what the future holds for us. <br/><br/>
                 Forever yours ❤️
-              </motion.p>
+              </motion.div>
             )}
           </AnimatePresence>
         </CardContent>
