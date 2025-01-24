@@ -31,14 +31,18 @@ const reasons = [
 
 const Reasons = () => {
   const [currentReason, setCurrentReason] = useState<number | null>(null);
+  const [displayedReasons, setDisplayedReasons] = useState<number[]>([]);
 
   const handleHeartClick = () => {
     if (currentReason === null) {
       setCurrentReason(0);
+      setDisplayedReasons([0]);
     } else if (currentReason < reasons.length - 1) {
       setCurrentReason(currentReason + 1);
+      setDisplayedReasons([...displayedReasons, currentReason + 1]);
     } else {
       setCurrentReason(null);
+      setDisplayedReasons([]);
     }
   };
 
@@ -51,33 +55,35 @@ const Reasons = () => {
         
         <div className="relative flex justify-center items-center min-h-[60vh]">
           <motion.div
-            className="cursor-pointer"
+            className="cursor-pointer relative"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleHeartClick}
           >
             <Heart 
-              size={120} 
+              size={200} 
               className="text-white fill-love hover:fill-love-light transition-colors"
             />
+            <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-white">
+              C
+            </span>
           </motion.div>
 
-          <AnimatePresence>
-            {currentReason !== null && (
-              <motion.div
-                initial={{ scale: 0, y: 0 }}
-                animate={{ scale: 1, y: -100 }}
-                exit={{ scale: 0, y: -200, opacity: 0 }}
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-              >
-                <div className="bg-black/80 backdrop-blur-sm p-4 rounded-lg border border-love shadow-xl max-w-xs">
-                  <p className="text-white text-center">
-                    {reasons[currentReason]}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className="fixed inset-0 pointer-events-none flex flex-wrap justify-center items-center gap-4 p-8 overflow-hidden">
+            <AnimatePresence>
+              {displayedReasons.map((index) => (
+                <motion.div
+                  key={index}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  className="text-white text-center p-4 max-w-xs"
+                >
+                  {reasons[index]}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
 
         {currentReason !== null && (
