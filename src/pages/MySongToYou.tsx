@@ -3,15 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const MySongToYou = () => {
   return (
     <div className="min-h-screen py-8">
-      <div className="container mx-auto px-4 space-y-8">
-        <Card className="bg-black/80 backdrop-blur border-love">
+      <div className="container mx-auto px-4 space-y-8 max-w-3xl">
+        <Card className="card-gradient">
           <CardHeader>
-            <CardTitle className="text-center text-3xl font-bold text-love">
+            <CardTitle className="text-center text-3xl font-bold text-white">
               This song was made about you
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-8">
-            <div className="text-gray-200 whitespace-pre-line leading-relaxed text-lg">
+            <div className="text-white text-center whitespace-pre-line leading-relaxed text-lg mx-auto max-w-2xl">
               {`You look so wonderful in your dress
 I love your hair like that
 The way it falls on the side of your neck
@@ -73,9 +73,9 @@ And in a moment, I knew you best`}
               />
             </div>
 
-            <Card className="bg-black/60 backdrop-blur border-love">
+            <Card className="card-gradient">
               <CardHeader>
-                <CardTitle className="text-center text-2xl font-bold text-love">
+                <CardTitle className="text-center text-2xl font-bold text-white">
                   A Playlist Just for You
                 </CardTitle>
               </CardHeader>

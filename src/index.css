@@ -40,6 +40,12 @@
   }
 }
 
+.card-gradient {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .unlock-animation {
   position: fixed;
   inset: 0;

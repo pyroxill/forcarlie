@@ -64,7 +64,7 @@ const Timeline = () => {
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <div className="w-4 h-4 rounded-full bg-love" />
           </div>
-          <Card className="w-1/2 bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="w-1/2 card-gradient">
             <CardContent className="p-4">
               <div className="text-sm text-pink-300">{event.date}</div>
               <h3 className="text-xl font-semibold text-white mb-2">{event.title}</h3>

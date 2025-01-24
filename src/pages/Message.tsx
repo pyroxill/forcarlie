@@ -20,9 +20,9 @@ const Message = () => {
   return (
     <div className="min-h-screen py-8">
       <div className="container mx-auto px-4">
-        <Card className="mb-8 bg-black/80 backdrop-blur border-love fade-scale-in">
+        <Card className="mb-8 card-gradient">
           <CardHeader>
-            <CardTitle className="text-center text-3xl font-bold text-love">
+            <CardTitle className="text-center text-3xl font-bold text-white">
               My Heart's Message 💝
             </CardTitle>
           </CardHeader>
@@ -41,20 +41,15 @@ const Message = () => {
 
         <div className="mb-8 flex justify-center space-x-4">
           <Link to="/">
-            <Button variant="outline" className="bg-black/80 text-love hover:bg-love hover:text-white border-love">
+            <Button variant="outline" className="bg-black/80 text-white hover:bg-love hover:text-white border-love">
               <Heart className="mr-2 h-4 w-4" /> Home
-            </Button>
-          </Link>
-          <Link to="/future-goals">
-            <Button variant="outline" className="bg-black/80 text-love hover:bg-love hover:text-white border-love">
-              <Heart className="mr-2 h-4 w-4" /> Our Future Together
             </Button>
           </Link>
         </div>
 
-        <Card className="bg-black/80 backdrop-blur border-love fade-scale-in">
+        <Card className="card-gradient">
           <CardHeader>
-            <CardTitle className="text-center text-2xl font-bold text-love">
+            <CardTitle className="text-center text-2xl font-bold text-white">
               Our Story So Far ✨
             </CardTitle>
           </CardHeader>
@@ -68,7 +63,7 @@ const Message = () => {
                   <div className="transform transition-all duration-300 hover:scale-105">
                     <h3 className="text-love font-semibold">{memory.date}</h3>
                     <h4 className="text-lg font-medium text-white">{memory.title}</h4>
-                    <p className="text-gray-300">{memory.description}</p>
+                    <p className="text-gray-200">{memory.description}</p>
                   </div>
                 </div>
               ))}
