@@ -21,25 +21,20 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
   
   // Use the correct image path based on the piece number
   const getImagePath = (number: string) => {
-    if (number === '1') {
-      return '/lovable-uploads/59575ba7-1a5e-454f-a849-9e942e8b9ce6.png';
-    }
-    if (number === '2') {
-      return '/lovable-uploads/ab684a84-2369-4a5a-94aa-c7ad974a57d5.png';
-    }
-    if (number === '3') {
-      return '/lovable-uploads/71eb8d54-dfa7-4b55-83fe-bd8a8f00df4e.png';
-    }
-    if (number === '4') {
-      return '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png';
-    }
-    if (number === '5') {
-      return '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png';
-    }
-    if (number === '7') {
-      return 'https://images.unsplash.com/photo-1535268647677-300dbf3d78d1';
-    }
-    return `/Piece${number}.png`; // Fallback for other pieces until they're uploaded
+    // Create a mapping of piece numbers to their actual positions
+    const imageMapping: { [key: string]: string } = {
+      '1': '/lovable-uploads/ab684a84-2369-4a5a-94aa-c7ad974a57d5.png', // Original piece 2
+      '2': '/lovable-uploads/71eb8d54-dfa7-4b55-83fe-bd8a8f00df4e.png', // Original piece 3
+      '3': '/lovable-uploads/59575ba7-1a5e-454f-a849-9e942e8b9ce6.png', // Original piece 1
+      '4': '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png', // Original piece 5
+      '5': '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png', // Original piece 4
+      '6': '/Piece6.png', // Placeholder for piece 6 until provided
+      '7': '/Piece7.png',
+      '8': '/Piece8.png',
+      '9': '/Piece9.png'
+    };
+
+    return imageMapping[number] || `/Piece${number}.png`; // Fallback for pieces without uploaded images
   };
 
   return (
