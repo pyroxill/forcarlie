@@ -12,12 +12,12 @@ import PasswordProtection from "./components/PasswordProtection";
 
 const queryClient = new QueryClient();
 
-const FloatingHearts = () => {
+const FloatingElements = () => {
   return (
     <div className="floating-hearts">
-      {[...Array(10)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <Heart
-          key={i}
+          key={`heart-${i}`}
           className="floating-heart text-pink-500"
           style={{
             left: `${Math.random() * 100}%`,
@@ -25,6 +25,18 @@ const FloatingHearts = () => {
             fontSize: `${Math.random() * 20 + 10}px`,
           }}
         />
+      ))}
+      {['C', 'J'].map((letter, i) => (
+        <div
+          key={`letter-${letter}`}
+          className="floating-letter"
+          style={{
+            left: `${20 + i * 60}%`,
+            animationDelay: `${Math.random() * 20}s`,
+          }}
+        >
+          {letter}
+        </div>
       ))}
     </div>
   );
@@ -60,7 +72,7 @@ const App = () => {
         {!isUnlocked && <PasswordProtection onUnlock={() => setIsUnlocked(true)} />}
         <div className={`transition-opacity duration-1000 ${isUnlocked ? 'opacity-100' : 'opacity-0'}`}>
           <BrowserRouter>
-            <FloatingHearts />
+            <FloatingElements />
             <Navigation />
             <div className="content-container">
               <Routes>
