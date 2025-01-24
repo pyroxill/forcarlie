@@ -189,7 +189,7 @@
 }
 
 .nav-link {
-  @apply relative px-6 py-3 text-white transition-all duration-300;
+  @apply relative px-6 py-3 text-white transition-all duration-300 text-shadow-sm;
 }
 
 .nav-link::after {
@@ -203,11 +203,11 @@
 
 .nav-link:hover {
   @apply scale-105 text-[#FFDEE2];
-  text-shadow: 0 0 10px rgba(255, 222, 226, 0.5);
+  text-shadow: 0 0 10px rgba(255, 222, 226, 0.8);
 }
 
 .modern-nav {
-  @apply fixed top-16 left-0 right-0 flex justify-center items-center h-16 bg-white/10 backdrop-blur-md z-50;
+  @apply fixed top-16 left-0 right-0 flex justify-center items-center h-16 bg-transparent z-50;
   border-bottom: 1px solid rgba(234, 56, 76, 0.2);
 }
 

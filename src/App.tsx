@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import { Heart, Menu, X } from "lucide-react";
 import Index from "./pages/Index";
 import Message from "./pages/Message";
@@ -52,28 +52,28 @@ const Navigation = () => {
   return (
     <nav className="modern-nav">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-center items-center relative">
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden text-white p-2"
+            className="absolute left-4 md:hidden text-white p-2 z-50"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           
-          <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto absolute md:relative left-0 top-16 md:top-0 bg-white/10 backdrop-blur-md md:bg-transparent md:backdrop-filter-none p-4 md:p-0`}>
-            <Link to="/" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+          <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto absolute md:relative left-0 top-16 md:top-0 bg-black/60 md:bg-transparent backdrop-blur-md p-4 md:p-0`}>
+            <Link to="/" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> Home 🏠
             </Link>
-            <Link to="/message" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+            <Link to="/message" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> Message 💌
             </Link>
-            <Link to="/my-song" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+            <Link to="/my-song" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> Your Music 🎵
             </Link>
-            <Link to="/reasons" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+            <Link to="/reasons" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> 24 Reasons 💝
             </Link>
-            <Link to="/reassurance" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
+            <Link to="/reassurance" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> Reassurance 🫂
             </Link>
           </div>
