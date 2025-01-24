@@ -33,6 +33,9 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     if (number === '4') {
       return '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png';
     }
+    if (number === '5') {
+      return '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png';
+    }
     return `/Piece${number}.png`; // Fallback for other pieces until they're uploaded
   };
 
