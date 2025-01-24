@@ -68,15 +68,15 @@
   position: relative;
   width: 200px;
   height: 200px;
-  animation: dissolve 3s ease-in-out forwards;
+  animation: dissolve 6s ease-in-out forwards;
 }
 
-.petal-1 { transform: rotate(0deg); animation: petal-grow 3s ease-in-out forwards; }
-.petal-2 { transform: rotate(60deg); animation: petal-grow 3s ease-in-out 0.2s forwards; }
-.petal-3 { transform: rotate(120deg); animation: petal-grow 3s ease-in-out 0.4s forwards; }
-.petal-4 { transform: rotate(180deg); animation: petal-grow 3s ease-in-out 0.6s forwards; }
-.petal-5 { transform: rotate(240deg); animation: petal-grow 3s ease-in-out 0.8s forwards; }
-.petal-6 { transform: rotate(300deg); animation: petal-grow 3s ease-in-out 1s forwards; }
+.petal-1 { transform: rotate(0deg); animation: petal-grow 6s ease-in-out forwards; }
+.petal-2 { transform: rotate(60deg); animation: petal-grow 6s ease-in-out 0.2s forwards; }
+.petal-3 { transform: rotate(120deg); animation: petal-grow 6s ease-in-out 0.4s forwards; }
+.petal-4 { transform: rotate(180deg); animation: petal-grow 6s ease-in-out 0.6s forwards; }
+.petal-5 { transform: rotate(240deg); animation: petal-grow 6s ease-in-out 0.8s forwards; }
+.petal-6 { transform: rotate(300deg); animation: petal-grow 6s ease-in-out 1s forwards; }
 
 .flower-center {
   position: absolute;
@@ -87,7 +87,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  animation: center-grow 3s ease-in-out 1.2s forwards;
+  animation: center-grow 6s ease-in-out 1.2s forwards;
 }
 
 @keyframes center-grow {
@@ -113,7 +113,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at center, rgba(217, 70, 239, 0.2) 0%, rgba(234, 56, 76, 0.2) 100%);
+  background: radial-gradient(circle at center, rgba(217, 70, 239, 0.9) 0%, rgba(234, 56, 76, 0.9) 100%);
   z-index: 100;
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Heart } from "lucide-react";
 import { Input } from "./ui/input";
 import { useToast } from "./ui/use-toast";
@@ -8,50 +8,18 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [isUnlocking, setIsUnlocking] = useState(false);
   const [showGrowingHeart, setShowGrowingHeart] = useState(false);
   const { toast } = useToast();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    audioRef.current = new Audio("/background-music.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.3;
-    
-    audioRef.current.play().catch(error => console.log("Audio playback failed:", error));
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
-  const fadeOutAndStop = () => {
-    if (!audioRef.current) return;
-    
-    const fadeInterval = setInterval(() => {
-      if (!audioRef.current) {
-        clearInterval(fadeInterval);
-        return;
-      }
-      
-      if (audioRef.current.volume > 0.01) {
-        audioRef.current.volume -= 0.01;
-      } else {
-        audioRef.current.pause();
-        clearInterval(fadeInterval);
-      }
-    }, 50);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === "08/12/2024") {
       setIsUnlocking(true);
       setShowGrowingHeart(true);
-      fadeOutAndStop();
+      const audio = new Audio("/unlock-sound.mp3");
+      audio.volume = 0.3;
+      audio.play().catch(error => console.log("Audio playback failed:", error));
       setTimeout(() => {
         onUnlock();
-      }, 1500); // Increased slightly to match heart animation
+      }, 6000);
     } else {
       toast({
         variant: "destructive",
