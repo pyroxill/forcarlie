@@ -16,6 +16,9 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     }),
   }));
 
+  // Extract the piece number from the id (e.g., "Piece 1" -> "1")
+  const pieceNumber = id.split(' ')[1];
+
   return (
     <div
       ref={drag}
@@ -31,8 +34,8 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       } : undefined}
     >
       <img
-        src={`/lovable-uploads/${id}.png`}
-        alt={id}
+        src={`/Piece${pieceNumber}.png`}
+        alt={`Puzzle piece ${pieceNumber}`}
         className="w-full h-full object-contain"
         draggable={false}
       />
