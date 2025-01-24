@@ -61,7 +61,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="bg-white/10 border-white/20 text-white placeholder-white/50 focus:border-[#D946EF]"
-                placeholder="MM/DD/YYYY"
+                placeholder="DD/MM/YYYY"
               />
             </form>
           </div>
