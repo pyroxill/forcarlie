@@ -1,4 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -14,6 +17,12 @@ const Index = () => {
             <p className="text-gray-700">
               Welcome to our special place. I made this website just for you.
             </p>
+            <Link to="/future-goals">
+              <Button className="mt-4" variant="outline">
+                <Heart className="mr-2 h-4 w-4" />
+                Our Future Together
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
