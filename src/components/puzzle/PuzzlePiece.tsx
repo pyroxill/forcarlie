@@ -18,6 +18,14 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
 
   // Extract the piece number from the id (e.g., "Piece 1" -> "1")
   const pieceNumber = id.split(' ')[1];
+  
+  // Use the correct image path based on the piece number
+  const getImagePath = (number: string) => {
+    if (number === '1') {
+      return '/lovable-uploads/59575ba7-1a5e-454f-a849-9e942e8b9ce6.png';
+    }
+    return `/Piece${number}.png`; // Fallback for other pieces until they're uploaded
+  };
 
   return (
     <div
@@ -34,13 +42,13 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       } : undefined}
     >
       <img
-        src={`/Piece${pieceNumber}.png`}
+        src={getImagePath(pieceNumber)}
         alt={`Puzzle piece ${pieceNumber}`}
         className="w-full h-full object-contain"
         draggable={false}
         onError={(e) => {
           console.error('Image failed to load:', e);
-          console.log('Attempted to load:', `/Piece${pieceNumber}.png`);
+          console.log('Attempted to load:', getImagePath(pieceNumber));
         }}
       />
     </div>
