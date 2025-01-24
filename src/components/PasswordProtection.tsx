@@ -8,10 +8,17 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [isUnlocking, setIsUnlocking] = useState(false);
   const { toast } = useToast();
 
+  const playUnlockSound = () => {
+    const audio = new Audio("/unlock-sound.mp3");
+    audio.volume = 0.5; // Set volume to 50%
+    audio.play().catch(error => console.log("Audio playback failed:", error));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password.toLowerCase() === "carlile") {
       setIsUnlocking(true);
+      playUnlockSound();
       setTimeout(() => {
         onUnlock();
       }, 1000);

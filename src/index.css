@@ -51,8 +51,9 @@
 }
 
 .big-heart {
-  width: 200px;
-  height: 200px;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
   color: white;
   animation: dissolve 3s ease-in-out forwards;
 }
@@ -63,11 +64,11 @@
     opacity: 0;
   }
   20% {
-    transform: scale(1.5);
+    transform: scale(1);
     opacity: 1;
   }
   80% {
-    transform: scale(1.5);
+    transform: scale(1);
     opacity: 1;
   }
   100% {
