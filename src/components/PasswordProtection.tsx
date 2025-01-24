@@ -53,8 +53,8 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     } else {
       toast({
         variant: "destructive",
-        title: "Incorrect password",
-        description: "Please try again",
+        title: "Incorrect password 😕",
+        description: "Please try again ❤️",
       });
     }
   };
@@ -64,10 +64,10 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       <div className="password-container">
         <div className="flex flex-col items-center gap-6">
           <div className="relative">
-            <Heart className="w-16 h-16 text-[#ea384c] animate-pulse" />
+            <Heart className="w-16 h-16 text-white animate-pulse" />
           </div>
           <div className="text-white text-center mb-4">
-            <h2 className="text-xl font-semibold mb-2">Enter Password</h2>
+            <h2 className="text-xl font-semibold mb-2">Enter Password 🔒</h2>
             <p className="text-sm opacity-80">Format: MM/DD/YYYY</p>
           </div>
           <form onSubmit={handleSubmit} className="w-64">

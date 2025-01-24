@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import { Heart, Menu, X } from "lucide-react";
 import Index from "./pages/Index";
 import Message from "./pages/Message";
@@ -61,20 +61,16 @@ const Navigation = () => {
           
           <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto absolute md:relative left-0 top-16 md:top-0 bg-white/10 backdrop-blur-md md:bg-transparent md:backdrop-filter-none p-4 md:p-0`}>
             <Link to="/" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
-              <Heart className="inline-block mr-1" size={14} />
-              Home
+              <Heart className="inline-block mr-1" size={14} /> Home 🏠
             </Link>
             <Link to="/message" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
-              <Heart className="inline-block mr-1" size={14} />
-              Message
+              <Heart className="inline-block mr-1" size={14} /> Message 💌
             </Link>
             <Link to="/my-song" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
-              <Heart className="inline-block mr-1" size={14} />
-              Your Music
+              <Heart className="inline-block mr-1" size={14} /> Your Music 🎵
             </Link>
             <Link to="/reasons" className="nav-link text-sm md:text-base whitespace-nowrap" onClick={() => setIsOpen(false)}>
-              <Heart className="inline-block mr-1" size={14} />
-              24 Reasons
+              <Heart className="inline-block mr-1" size={14} /> 24 Reasons 💝
             </Link>
           </div>
         </div>
@@ -116,6 +112,7 @@ const App = () => {
                 <Route path="/my-song" element={<MySongToYou />} />
                 <Route path="/reasons" element={<Reasons />} />
                 <Route path="/" element={<Index />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </div>
           </BrowserRouter>
