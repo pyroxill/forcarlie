@@ -1,13 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Message = () => {
   return (
-    <div className="min-h-screen py-8">
-      <div className="container mx-auto px-4 max-w-lg">
-        <Card className="card-gradient">
+    <div className="min-h-screen py-8 relative">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0 opacity-30"
+        style={{
+          backgroundImage: "url('/lovable-uploads/76e55ce5-330f-4a0a-95c8-8a3f2a9c449f.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      
+      <div className="container mx-auto px-4 max-w-lg relative z-10">
+        <Card className="bg-white/10 backdrop-blur-md border-white/20">
           <CardHeader>
             <CardTitle className="text-center text-3xl font-bold text-white">
               My Heart's Message 💝
@@ -21,18 +30,10 @@ const Message = () => {
               to creating countless more memories with you. You're not just my partner - you're my best friend, 
               my confidante, and my greatest blessing.
               <br/><br/>
-              Forever yours ❤️
+              Forever yours <Heart className="inline-block text-red-500" />
             </p>
           </CardContent>
         </Card>
-
-        <div className="mt-8 flex justify-center">
-          <Link to="/">
-            <Button variant="outline" className="bg-black/80 text-white hover:bg-love hover:text-white border-love">
-              <Heart className="mr-2 h-4 w-4" /> Home
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   );
