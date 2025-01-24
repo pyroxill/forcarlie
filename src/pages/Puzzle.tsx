@@ -42,8 +42,8 @@ export default function Puzzle() {
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
               <h2 className="text-xl font-semibold text-white mb-4">Pieces</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {[1, 2, 3, 4, 5, 6].map((piece) => (
+              <div className="grid grid-cols-3 sm:grid-cols-3 gap-4">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((piece) => (
                   !placedPieces[`Piece ${piece}`] && (
                     <PuzzlePiece
                       key={piece}
