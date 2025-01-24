@@ -28,7 +28,7 @@ const FutureGoals = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 py-8">
+    <div className="min-h-screen py-8">
       <div className="container mx-auto px-4">
         <Link to="/">
           <Button variant="outline" className="mb-6 bg-black/80 text-love hover:bg-love hover:text-white border-love">
@@ -36,7 +36,7 @@ const FutureGoals = () => {
           </Button>
         </Link>
         
-        <Card className="mb-8 bg-black/80 backdrop-blur border-love">
+        <Card className="mb-8 bg-black/80 backdrop-blur border-love fade-scale-in">
           <CardHeader>
             <CardTitle className="text-center text-3xl font-bold text-love">
               Our Journey Ahead ✨
@@ -51,7 +51,7 @@ const FutureGoals = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {goals.map((goal, index) => (
-            <Card key={index} className="transform transition-all duration-300 hover:scale-105 bg-black/80 backdrop-blur border-love">
+            <Card key={index} className="transform transition-all duration-300 hover:scale-105 bg-black/80 backdrop-blur border-love fade-scale-in">
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-love flex items-center justify-center gap-2">
                   <span className="text-2xl">{goal.icon}</span>

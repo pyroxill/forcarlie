@@ -18,9 +18,9 @@ const Message = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 py-8">
+    <div className="min-h-screen py-8">
       <div className="container mx-auto px-4">
-        <Card className="mb-8 bg-black/80 backdrop-blur border-love text-white">
+        <Card className="mb-8 bg-black/80 backdrop-blur border-love fade-scale-in">
           <CardHeader>
             <CardTitle className="text-center text-3xl font-bold text-love">
               My Heart's Message 💝
@@ -52,7 +52,7 @@ const Message = () => {
           </Link>
         </div>
 
-        <Card className="bg-black/80 backdrop-blur border-love">
+        <Card className="bg-black/80 backdrop-blur border-love fade-scale-in">
           <CardHeader>
             <CardTitle className="text-center text-2xl font-bold text-love">
               Our Story So Far ✨

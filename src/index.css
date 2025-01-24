@@ -33,15 +33,6 @@
     --ring: 0 72% 51%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 3%;
-    --sidebar-foreground: 0 100% 100%;
-    --sidebar-primary: 0 72% 51%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 13%;
-    --sidebar-accent-foreground: 0 100% 100%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 0 72% 51%;
   }
 }
 
@@ -52,54 +43,39 @@
 
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle at center, rgba(255, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    background: radial-gradient(circle at 50% -20%, #DC2626 -60%, rgba(0, 0, 0, 0.9) 60%),
+                radial-gradient(circle at 50% 120%, #DC2626 -20%, rgba(0, 0, 0, 0.9) 60%);
+    min-height: 100vh;
   }
-}
-
-@keyframes growFlower {
-  0% {
-    transform: translateY(100%) scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-.flowers-animation {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-}
-
-.flower {
-  position: absolute;
-  bottom: -20px;
-  width: 60px;
-  height: 60px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC2626'%3E%3Cpath d='M12,2L8,6L12,10L16,6L12,2M4.5,7.5L2,11L5.5,14.5L9,11L4.5,7.5M19.5,7.5L15,11L18.5,14.5L22,11L19.5,7.5M12,14L8,18L12,22L16,18L12,14Z'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation: growFlower 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  opacity: 0;
 }
 
 .nav-decoration {
   position: relative;
+  padding-bottom: 2rem;
 }
 
 .nav-decoration::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23DC2626'%3E%3Cpath d='M12,2L8,6L12,10L16,6L12,2M4.5,7.5L2,11L5.5,14.5L9,11L4.5,7.5M19.5,7.5L15,11L18.5,14.5L22,11L19.5,7.5M12,14L8,18L12,22L16,18L12,14Z'/%3E%3C/svg%3E");
-  background-size: 20px;
-  background-repeat: repeat-x;
-  opacity: 0.5;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #DC2626, transparent);
+}
+
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-scale-in {
+  animation: fadeScale 0.5s ease-out forwards;
 }
