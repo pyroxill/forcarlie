@@ -43,19 +43,23 @@
 @keyframes heart-explosion {
   0% {
     opacity: 0;
-    transform: translateY(0) rotate(0deg) scale(0.3);
+    transform: translate(0, 0) rotate(0deg) scale(0.3);
   }
   50% {
     opacity: 1;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--r)) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateY(-100px) rotate(360deg) scale(1.5);
+    transform: translate(calc(var(--tx) * 2), calc(var(--ty) * 2)) rotate(calc(var(--r) * 2)) scale(0.3);
   }
 }
 
 .heart-explosion {
-  animation: heart-explosion 2s ease-out infinite;
+  --tx: 0px;
+  --ty: 0px;
+  --r: 0deg;
+  animation: heart-explosion 1.5s ease-out forwards;
 }
 
 @keyframes heart-grow {
@@ -205,4 +209,3 @@
 .animate-float-up {
   animation: float-up 3s linear infinite;
 }
-

@@ -45,6 +45,17 @@ const Index = () => {
     };
   }, [isPlaying]);
 
+  useEffect(() => {
+    let timer: number;
+    if (showYay) {
+      timer = window.setTimeout(() => {
+        setShowYay(false);
+        setNoPosition({ x: 0, y: 0 });
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [showYay]);
+
   const handleNoHover = () => {
     if (isMobile) {
       setNoPosition({
@@ -110,14 +121,14 @@ const Index = () => {
             <div className="relative">
               <h1 className="text-6xl font-bold text-white animate-bounce">Yayyy!</h1>
               <div className="absolute inset-0 -z-10">
-                {[...Array(30)].map((_, i) => (
+                {[...Array(50)].map((_, i) => (
                   <Heart
                     key={i}
                     className="absolute text-white heart-explosion"
                     style={{
-                      left: '50%',
-                      top: '50%',
-                      transform: `rotate(${i * 12}deg)`,
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      transform: `rotate(${Math.random() * 360}deg)`,
                       transformOrigin: 'center',
                       animationDelay: `${Math.random() * 0.5}s`,
                       fontSize: `${Math.random() * 30 + 20}px`,
