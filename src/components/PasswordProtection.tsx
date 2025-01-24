@@ -31,11 +31,13 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   };
 
   return (
-    <div className={`fixed inset-0 z-50 ${isUnlocking ? "bg-black" : "backdrop-blur-md"}`}>
+    <div className={`password-protection ${isUnlocking ? "bg-black" : ""}`}>
       {showGrowingHeart && (
         <div className="heart-container">
-          <Heart className="big-heart" size={48} />
-          <span className="heart-text">C+J</span>
+          <div className="relative">
+            <Heart className="big-heart" size={48} />
+            <span className="heart-text">C+J</span>
+          </div>
         </div>
       )}
       <div className={`password-container ${isUnlocking ? "opacity-0" : ""}`}>

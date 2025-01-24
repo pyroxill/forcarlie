@@ -54,15 +54,6 @@
   }
 }
 
-.big-heart {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform-origin: center;
-  color: white;
-  animation: heart-grow 10s ease-in-out forwards;
-}
-
 .heart-container {
   position: fixed;
   inset: 0;
@@ -70,6 +61,13 @@
   justify-content: center;
   align-items: center;
   background: black;
+}
+
+.big-heart {
+  position: relative;
+  transform-origin: center;
+  color: white;
+  animation: heart-grow 10s ease-in-out forwards;
 }
 
 .heart-text {
@@ -82,6 +80,27 @@
   font-weight: bold;
   z-index: 10;
   white-space: nowrap;
+}
+
+.password-protection {
+  @apply fixed inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-center;
+  background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(234, 56, 76, 0.1) 100%);
+}
+
+.password-container {
+  @apply relative bg-white/20 p-8 rounded-2xl backdrop-blur-md border border-white/20;
+  animation: fade-scale-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .floating-hearts {
@@ -155,25 +174,3 @@
 .content-container {
   @apply pt-32 px-4 relative z-10;
 }
-
-.password-protection {
-  @apply fixed inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-center;
-  background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(234, 56, 76, 0.1) 100%);
-}
-
-.password-container {
-  @apply relative bg-white/20 p-8 rounded-2xl backdrop-blur-md border border-white/20;
-  animation: fade-scale-in 0.5s ease-out forwards;
-}
-
-@keyframes fade-scale-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
