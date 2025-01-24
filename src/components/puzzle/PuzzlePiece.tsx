@@ -34,7 +34,6 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     return imageMapping[number];
   };
 
-  // Generate jigsaw tabs and slots for each piece
   const getPieceShape = (pieceNum: number) => {
     const row = Math.ceil(pieceNum / 3);
     const col = ((pieceNum - 1) % 3) + 1;
@@ -49,15 +48,13 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     return {
       clipPath: `path("${generatePuzzlePath(edges)}")`,
       filter: 'drop-shadow(0 1px 2px rgb(0 0 0 / 0.3))',
-      border: '2px solid rgba(255, 255, 255, 0.5)',
-      borderRadius: '4px',
       overflow: 'hidden'
     };
   };
 
   const generatePuzzlePath = (edges: { top: boolean; right: boolean; bottom: boolean; left: boolean }) => {
     const size = 100;
-    const tabSize = 20;
+    const tabSize = 15;
     
     let path = `M 0,0`;
     
@@ -92,8 +89,8 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     <div
       ref={drag}
       className={cn(
-        'cursor-move transition-all duration-300 relative',
-        initialSize === 'small' ? 'w-24 h-24' : 'w-32 h-32',
+        'cursor-move transition-all duration-300',
+        initialSize === 'small' ? 'w-24 h-24' : 'w-full h-full',
         isDragging ? 'opacity-50' : 'opacity-100',
         position ? 'absolute' : 'relative'
       )}
