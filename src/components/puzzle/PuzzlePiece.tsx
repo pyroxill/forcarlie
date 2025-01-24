@@ -90,7 +90,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       ref={drag}
       className={cn(
         'cursor-move transition-all duration-300',
-        initialSize === 'small' ? 'w-24 h-24' : 'w-[200px] h-[200px]',
+        initialSize === 'small' ? 'w-24 h-24' : 'w-[150px] h-[150px]',
         isDragging ? 'opacity-50' : 'opacity-100',
         position ? 'absolute' : 'relative'
       )}
@@ -101,20 +101,22 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
         }
       }}
     >
-      <img
-        src={getImagePath(pieceNumber)}
-        alt={`Puzzle piece ${pieceNumber}`}
-        className="w-full h-full object-cover"
-        draggable={false}
-        onError={(e) => {
-          console.error('Image failed to load:', e);
-          console.log('Attempted to load:', getImagePath(pieceNumber));
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={getPieceShape(parseInt(pieceNumber))}
-      />
+      <div className="w-full h-full relative">
+        <img
+          src={getImagePath(pieceNumber)}
+          alt={`Puzzle piece ${pieceNumber}`}
+          className="w-full h-full object-cover"
+          draggable={false}
+          onError={(e) => {
+            console.error('Image failed to load:', e);
+            console.log('Attempted to load:', getImagePath(pieceNumber));
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={getPieceShape(parseInt(pieceNumber))}
+        />
+      </div>
     </div>
   );
 }
