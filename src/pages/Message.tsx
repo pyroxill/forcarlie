@@ -69,7 +69,7 @@ const Message = () => {
                 I want to be there for you when you're down and when you're happy. I want to be your rock, your shoulder to cry on, your best friend, your lover, your everything because your my 
                 everything. I love you so much Carlie, i love you more than words can describe. Don't ever change you are one of kind, so speical to me. I love you so much. I can't wait to see
                 what the future holds for us. <br/><br/>
-                Forever yours ❤️
+                Forever yours - Jayden ❤️
               </motion.div>
             )}
           </AnimatePresence>
