@@ -86,9 +86,13 @@ const Navigation = () => {
 const App = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [showUnlockAnimation, setShowUnlockAnimation] = useState(false);
+  const [flowerType, setFlowerType] = useState<'daisy' | 'rose' | 'hoya' | 'lily'>('daisy');
 
   const handleUnlock = () => {
     setShowUnlockAnimation(true);
+    // Randomly select a flower type
+    const flowers = ['daisy', 'rose', 'hoya', 'lily'] as const;
+    setFlowerType(flowers[Math.floor(Math.random() * flowers.length)]);
     setTimeout(() => {
       setShowUnlockAnimation(false);
       setIsUnlocked(true);
@@ -103,16 +107,16 @@ const App = () => {
         {!isUnlocked && <PasswordProtection onUnlock={handleUnlock} />}
         {showUnlockAnimation && (
           <div className="unlock-animation">
-            <div className="animate-flower">
+            <div className={`animate-flower ${flowerType}`}>
               <div className="flower-stem"></div>
               <div className="flower-leaf left" style={{ '--rotation': '-30deg' } as React.CSSProperties}></div>
               <div className="flower-leaf right" style={{ '--rotation': '30deg' } as React.CSSProperties}></div>
-              {[...Array(8)].map((_, i) => (
+              {[...Array(flowerType === 'daisy' ? 8 : flowerType === 'rose' ? 12 : flowerType === 'hoya' ? 5 : 6)].map((_, i) => (
                 <div
                   key={`petal-${i}`}
                   className="flower-petal"
                   style={{
-                    '--rotation': `${i * 45}deg`,
+                    '--rotation': `${i * (360 / (flowerType === 'daisy' ? 8 : flowerType === 'rose' ? 12 : flowerType === 'hoya' ? 5 : 6))}deg`,
                     animation: `petal-grow 1.5s ease-out ${i * 0.1}s forwards`
                   } as React.CSSProperties}
                 ></div>

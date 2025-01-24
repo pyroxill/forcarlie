@@ -25,9 +25,7 @@
     --ring: 346 84% 61%;
     --radius: 0.5rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -37,6 +35,13 @@
     background: radial-gradient(circle at 50% -20%, #D946EF -60%, rgba(234, 56, 76, 0.9) 60%),
                 radial-gradient(circle at 50% 120%, #ea384c -20%, rgba(234, 56, 76, 0.9) 60%);
     min-height: 100vh;
+  }
+
+  /* Add backdrop blur to cards and content */
+  .card, 
+  .modern-nav,
+  .password-container {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
   }
 }
 
@@ -59,6 +64,7 @@
   align-items: center;
 }
 
+/* Base flower styles */
 .flower-stem {
   position: absolute;
   width: 8px;
@@ -79,39 +85,46 @@
   bottom: 80px;
 }
 
-.flower-leaf.left {
-  left: -30px;
-  transform: rotate(-30deg);
-  animation: leaf-grow 1.5s ease-out 0.5s forwards;
-}
-
-.flower-leaf.right {
-  right: -30px;
-  transform: rotate(30deg) scaleX(-1);
-  animation: leaf-grow 1.5s ease-out 0.5s forwards;
-}
-
-.flower-center {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: #fbbf24;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  animation: center-grow 1.5s ease-out 1.2s forwards;
-  z-index: 2;
-}
-
-.flower-petal {
-  position: absolute;
+/* Flower type specific styles */
+.daisy .flower-petal {
+  background: #fef2f2;
   width: 60px;
   height: 100px;
-  background: #fef2f2;
   border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
-  transform-origin: bottom center;
-  opacity: 0;
+}
+
+.rose .flower-petal {
+  background: #ea384c;
+  width: 50px;
+  height: 80px;
+  border-radius: 50% 0 50% 0;
+  opacity: 0.9;
+}
+
+.hoya .flower-petal {
+  background: #FFDEE2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.lily .flower-petal {
+  background: #FFF;
+  width: 70px;
+  height: 120px;
+  border-radius: 50% 50% 0 0;
+}
+
+.rose .flower-center {
+  background: #991B1B !important;
+}
+
+.hoya .flower-center {
+  background: #FFC0CB !important;
+}
+
+.lily .flower-center {
+  background: #FFD700 !important;
 }
 
 @keyframes petal-grow {
