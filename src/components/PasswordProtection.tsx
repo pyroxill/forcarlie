@@ -10,15 +10,12 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Create audio element for background music
     audioRef.current = new Audio("/background-music.mp3");
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
     
-    // Start playing when component mounts
     audioRef.current.play().catch(error => console.log("Audio playback failed:", error));
 
-    // Cleanup function to stop music when component unmounts
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -47,7 +44,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.toLowerCase() === "carlile") {
+    if (password === "8/12/2024") {
       setIsUnlocking(true);
       fadeOutAndStop();
       setTimeout(() => {
@@ -69,13 +66,17 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
           <div className="relative">
             <Heart className="w-16 h-16 text-[#ea384c] animate-pulse" />
           </div>
+          <div className="text-white text-center mb-4">
+            <h2 className="text-xl font-semibold mb-2">Enter Password</h2>
+            <p className="text-sm opacity-80">Format: MM/DD/YYYY</p>
+          </div>
           <form onSubmit={handleSubmit} className="w-64">
             <Input
-              type="password"
+              type="text"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="bg-white/10 border-white/20 text-white placeholder-white/50 focus:border-[#D946EF]"
-              placeholder="Enter password"
+              placeholder="MM/DD/YYYY"
             />
           </form>
         </div>

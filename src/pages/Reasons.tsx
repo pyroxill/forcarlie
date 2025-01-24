@@ -53,7 +53,7 @@ const Reasons = () => {
           24 Reasons I Love You
         </h1>
         
-        <div className="relative flex justify-center items-center min-h-[60vh]">
+        <div className="relative flex justify-center items-center min-h-[40vh] md:min-h-[60vh]">
           <motion.div
             className="cursor-pointer relative"
             whileHover={{ scale: 1.1 }}
@@ -61,7 +61,7 @@ const Reasons = () => {
             onClick={handleHeartClick}
           >
             <Heart 
-              size={200} 
+              size={150} 
               className="text-white fill-love hover:fill-love-light transition-colors"
             />
             <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-white">
@@ -69,7 +69,7 @@ const Reasons = () => {
             </span>
           </motion.div>
 
-          <div className="fixed inset-0 pointer-events-none flex flex-wrap justify-center items-center gap-4 p-8 overflow-hidden">
+          <div className="fixed inset-0 pointer-events-none flex flex-wrap justify-center items-center gap-3 p-4 md:p-8 overflow-hidden">
             <AnimatePresence>
               {displayedReasons.map((index) => (
                 <motion.div
@@ -77,7 +77,7 @@ const Reasons = () => {
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
-                  className="text-white text-center p-4 max-w-xs"
+                  className="text-white text-center p-2 md:p-4 max-w-[250px] md:max-w-xs text-sm md:text-base"
                 >
                   {reasons[index]}
                 </motion.div>
