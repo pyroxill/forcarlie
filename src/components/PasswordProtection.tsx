@@ -17,9 +17,11 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       const audio = new Audio("/unlock-sound.mp3");
       audio.volume = 0.3;
       audio.play().catch(error => console.log("Audio playback failed:", error));
+      
+      // Start the animation immediately
       setTimeout(() => {
         onUnlock();
-      }, 6000);
+      }, 6000); // Match the flower animation duration
     } else {
       toast({
         variant: "destructive",
