@@ -18,10 +18,9 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       audio.volume = 0.3;
       audio.play().catch(error => console.log("Audio playback failed:", error));
       
-      // Start the animation immediately
       setTimeout(() => {
         onUnlock();
-      }, 6000); // Match the flower animation duration
+      }, 10000); // Match the heart animation duration
     } else {
       toast({
         variant: "destructive",
@@ -35,7 +34,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     <div className={`password-protection ${isUnlocking ? "animate-fade-out" : ""}`}>
       {showGrowingHeart && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <Heart className="text-white animate-grow-heart" />
+          <Heart className="big-heart" size={48} />
         </div>
       )}
       <div className="password-container">
