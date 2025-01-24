@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import FutureGoals from "./pages/FutureGoals";
 import Message from "./pages/Message";
 import PasswordProtection from "./components/PasswordProtection";
+import Timeline from "./components/Timeline";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +19,7 @@ const FloatingElements = () => {
       {[...Array(40)].map((_, i) => (
         <Heart
           key={`heart-${i}`}
-          className="floating-heart text-pink-500"
+          className="floating-heart text-white"
           style={{
             left: `${Math.random() * 100}%`,
             bottom: `-50px`,
@@ -65,13 +66,27 @@ const Navigation = () => {
 
 const App = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showUnlockAnimation, setShowUnlockAnimation] = useState(false);
+
+  const handleUnlock = () => {
+    setShowUnlockAnimation(true);
+    setTimeout(() => {
+      setShowUnlockAnimation(false);
+      setIsUnlocked(true);
+    }, 3000);
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {!isUnlocked && <PasswordProtection onUnlock={() => setIsUnlocked(true)} />}
+        {!isUnlocked && <PasswordProtection onUnlock={handleUnlock} />}
+        {showUnlockAnimation && (
+          <div className="unlock-animation">
+            <Heart className="big-heart" />
+          </div>
+        )}
         <div className={`transition-opacity duration-1000 ${isUnlocked ? 'opacity-100' : 'opacity-0'}`}>
           <BrowserRouter>
             <FloatingElements />

@@ -40,6 +40,42 @@
   }
 }
 
+.unlock-animation {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, rgba(217, 70, 239, 0.2) 0%, rgba(234, 56, 76, 0.2) 100%);
+  z-index: 100;
+}
+
+.big-heart {
+  width: 200px;
+  height: 200px;
+  color: white;
+  animation: dissolve 3s ease-in-out forwards;
+}
+
+@keyframes dissolve {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
 .floating-hearts {
   position: fixed;
   width: 100vw;
