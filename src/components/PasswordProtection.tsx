@@ -25,7 +25,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       
       setTimeout(() => {
         onUnlock();
-      }, 10000);
+      }, 5000); // Changed from 10000 to 5000 milliseconds
     } else {
       toast({
         variant: "destructive",
