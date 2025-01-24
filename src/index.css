@@ -183,3 +183,7 @@
 .content-container {
   @apply pt-32 px-4 relative z-10;
 }
+
+.animate-float-up {
+  animation: float-up 3s linear infinite;
+}
