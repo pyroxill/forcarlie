@@ -47,13 +47,11 @@ const Index = () => {
 
   const handleNoHover = () => {
     if (isMobile) {
-      // For mobile, move to a random position when touched
       setNoPosition({
         x: Math.random() * (window.innerWidth - 100),
         y: Math.random() * (window.innerHeight - 100)
       });
     } else {
-      // For desktop, follow mouse movement but avoid it
       const x = Math.random() * (window.innerWidth - 100);
       const y = Math.random() * (window.innerHeight - 100);
       setNoPosition({ x, y });
@@ -73,15 +71,14 @@ const Index = () => {
         </div>
         <Timeline />
         
-        {/* New content */}
         <div className="mt-16 text-center">
           <h2 className="text-3xl font-bold text-white mb-8">Together Forever...???</h2>
           
           <div className="flex justify-center mb-8">
             <img 
-              src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1"
-              alt="Cute kitten with heart"
-              className="w-64 h-64 object-cover rounded-lg shadow-lg"
+              src="/lovable-uploads/72ee4165-cb3d-49f3-9d5a-96fd994f92c1.png"
+              alt="Cute teddy bear with heart"
+              className="w-64 h-64 object-contain rounded-lg"
             />
           </div>
 
@@ -116,11 +113,13 @@ const Index = () => {
                 {[...Array(30)].map((_, i) => (
                   <Heart
                     key={i}
-                    className="absolute text-pink-500 animate-float-up"
+                    className="absolute text-white heart-explosion"
                     style={{
-                      left: `${Math.random() * 100}%`,
-                      bottom: `-50px`,
-                      animationDelay: `${Math.random() * 2}s`,
+                      left: '50%',
+                      top: '50%',
+                      transform: `rotate(${i * 12}deg)`,
+                      transformOrigin: 'center',
+                      animationDelay: `${Math.random() * 0.5}s`,
                       fontSize: `${Math.random() * 30 + 20}px`,
                     }}
                   />
