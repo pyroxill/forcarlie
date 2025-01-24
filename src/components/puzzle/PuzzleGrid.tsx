@@ -1,5 +1,6 @@
 import { useDrop } from 'react-dnd';
 import { PuzzlePiece } from './PuzzlePiece';
+import { cn } from '@/lib/utils';
 
 interface PuzzleGridProps {
   onPiecePlaced: (pieceId: string, x: number, y: number) => void;
