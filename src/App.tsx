@@ -4,12 +4,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Heart, Menu, X } from "lucide-react";
 import Index from "./pages/Index";
 import Message from "./pages/Message";
 import MySongToYou from "./pages/MySongToYou";
+import Reasons from "./pages/Reasons";
 import PasswordProtection from "./components/PasswordProtection";
-import Timeline from "./components/Timeline";
 
 const queryClient = new QueryClient();
 
@@ -46,20 +46,47 @@ const FloatingElements = () => {
 };
 
 const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <nav className="modern-nav">
-      <Link to="/" className="nav-link">
-        <Heart className="inline-block mr-2" size={16} />
-        Home
-      </Link>
-      <Link to="/message" className="nav-link">
-        <Heart className="inline-block mr-2" size={16} />
-        Message
-      </Link>
-      <Link to="/my-song" className="nav-link">
-        <Heart className="inline-block mr-2" size={16} />
-        My Song to You
-      </Link>
+      <button 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="md:hidden absolute left-4 text-white p-2"
+      >
+        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      <div className={`
+        ${isMenuOpen ? 'flex' : 'hidden'} 
+        md:flex flex-col md:flex-row 
+        absolute md:relative 
+        top-16 md:top-0 
+        left-0 md:left-auto 
+        w-full md:w-auto 
+        bg-black/80 md:bg-transparent 
+        backdrop-blur-md md:backdrop-blur-none
+        py-4 md:py-0
+        space-y-4 md:space-y-0
+        items-center
+      `}>
+        <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Heart className="inline-block mr-2" size={16} />
+          Home
+        </Link>
+        <Link to="/message" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Heart className="inline-block mr-2" size={16} />
+          Message
+        </Link>
+        <Link to="/my-song" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Heart className="inline-block mr-2" size={16} />
+          My Song
+        </Link>
+        <Link to="/reasons" className="nav-link" onClick={() => setIsMenuOpen(false)}>
+          <Heart className="inline-block mr-2" size={16} />
+          24 Reasons
+        </Link>
+      </div>
     </nav>
   );
 };
@@ -95,6 +122,7 @@ const App = () => {
               <Routes>
                 <Route path="/message" element={<Message />} />
                 <Route path="/my-song" element={<MySongToYou />} />
+                <Route path="/reasons" element={<Reasons />} />
                 <Route path="/" element={<Index />} />
               </Routes>
             </div>
