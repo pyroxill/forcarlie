@@ -104,19 +104,12 @@ const App = () => {
         {showUnlockAnimation && (
           <div className="unlock-animation">
             <div className="animate-flower">
-              <div className="flower-stem"></div>
-              <div className="flower-leaf left" style={{ '--rotation': '-30deg' } as React.CSSProperties}></div>
-              <div className="flower-leaf right" style={{ '--rotation': '30deg' } as React.CSSProperties}></div>
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={`petal-${i}`}
-                  className="flower-petal"
-                  style={{
-                    '--rotation': `${i * 45}deg`,
-                    animation: `petal-grow 1.5s ease-out ${i * 0.1}s forwards`
-                  } as React.CSSProperties}
-                ></div>
-              ))}
+              <div className="flower-petal petal-1"></div>
+              <div className="flower-petal petal-2"></div>
+              <div className="flower-petal petal-3"></div>
+              <div className="flower-petal petal-4"></div>
+              <div className="flower-petal petal-5"></div>
+              <div className="flower-petal petal-6"></div>
               <div className="flower-center"></div>
             </div>
           </div>
