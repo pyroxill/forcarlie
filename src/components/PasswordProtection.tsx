@@ -40,7 +40,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
           </div>
         </div>
       )}
-      <div className={`password-container transition-all duration-500 ${isUnlocking ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"}`}>
+      <div className={`password-container ${isUnlocking ? "opacity-0 pointer-events-none scale-95" : "opacity-100 scale-100"}`}>
         <div className="flex flex-col items-center gap-6">
           <div className="relative">
             <Heart className="w-16 h-16 text-white animate-pulse" />
