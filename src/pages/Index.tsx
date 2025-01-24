@@ -5,8 +5,27 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-black relative">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-love/20 to-black" />
+      
+      {/* Decorative roses */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="flowers-animation">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <div
+              key={index}
+              className="flower"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 relative z-10">
         <Card className="max-w-2xl mx-auto bg-black/80 backdrop-blur border-love">
           <CardHeader>
             <CardTitle className="text-center text-3xl font-bold text-love">
