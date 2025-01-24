@@ -90,7 +90,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       ref={drag}
       className={cn(
         'cursor-move transition-all duration-300',
-        initialSize === 'small' ? 'w-24 h-24' : 'w-full h-full',
+        initialSize === 'small' ? 'w-24 h-24' : 'w-[200px] h-[200px]',
         isDragging ? 'opacity-50' : 'opacity-100',
         position ? 'absolute' : 'relative'
       )}
