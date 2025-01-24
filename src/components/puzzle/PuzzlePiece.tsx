@@ -19,6 +19,9 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
   // Extract the piece number from the id (e.g., "Piece 1" -> "1")
   const pieceNumber = id.split(' ')[1];
 
+  // Add console.log to debug image path
+  console.log(`Loading image from: /lovable-uploads/Piece${pieceNumber}.png`);
+
   return (
     <div
       ref={drag}
@@ -34,10 +37,11 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       } : undefined}
     >
       <img
-        src={`/Piece${pieceNumber}.png`}
+        src={`/lovable-uploads/Piece${pieceNumber}.png`}
         alt={`Puzzle piece ${pieceNumber}`}
         className="w-full h-full object-contain"
         draggable={false}
+        onError={(e) => console.error('Image failed to load:', e)}
       />
     </div>
   );
