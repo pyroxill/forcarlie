@@ -6,6 +6,7 @@ import { useToast } from "./ui/use-toast";
 const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [password, setPassword] = useState("");
   const [isUnlocking, setIsUnlocking] = useState(false);
+  const [showGrowingHeart, setShowGrowingHeart] = useState(false);
   const { toast } = useToast();
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -46,10 +47,11 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     e.preventDefault();
     if (password === "08/12/2024") {
       setIsUnlocking(true);
+      setShowGrowingHeart(true);
       fadeOutAndStop();
       setTimeout(() => {
         onUnlock();
-      }, 1000);
+      }, 1500); // Increased slightly to match heart animation
     } else {
       toast({
         variant: "destructive",
@@ -61,6 +63,11 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   return (
     <div className={`password-protection ${isUnlocking ? "animate-fade-out" : ""}`}>
+      {showGrowingHeart && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <Heart className="text-white animate-grow-heart" />
+        </div>
+      )}
       <div className="password-container">
         <div className="flex flex-col items-center gap-6">
           <div className="relative">
