@@ -36,13 +36,13 @@
                 radial-gradient(circle at 50% 120%, #ea384c -20%, rgba(234, 56, 76, 0.9) 60%);
     min-height: 100vh;
   }
+}
 
-  /* Add backdrop blur to cards and content */
-  .card, 
-  .modern-nav,
-  .password-container {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
-  }
+/* Add backdrop blur to cards and content */
+.card, 
+.modern-nav,
+.password-container {
+  @apply bg-white/10 backdrop-blur-md border border-white/20;
 }
 
 .unlock-animation {
@@ -83,6 +83,38 @@
   background: #4ade80;
   border-radius: 20px 0;
   bottom: 80px;
+}
+
+.flower-leaf.left {
+  left: -30px;
+  transform: rotate(-30deg);
+  animation: leaf-grow 1.5s ease-out 0.5s forwards;
+}
+
+.flower-leaf.right {
+  right: -30px;
+  transform: rotate(30deg) scaleX(-1);
+  animation: leaf-grow 1.5s ease-out 0.5s forwards;
+}
+
+.flower-center {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #fbbf24;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: center-grow 1.5s ease-out 1.2s forwards;
+  z-index: 2;
+}
+
+.flower-petal {
+  position: absolute;
+  transform-origin: bottom center;
+  opacity: 0;
+  z-index: 1;
 }
 
 /* Flower type specific styles */
