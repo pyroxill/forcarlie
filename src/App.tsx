@@ -15,14 +15,14 @@ const queryClient = new QueryClient();
 const FloatingElements = () => {
   return (
     <div className="floating-hearts">
-      {[...Array(15)].map((_, i) => (
+      {[...Array(25)].map((_, i) => (
         <Heart
           key={`heart-${i}`}
           className="floating-heart text-pink-500"
           style={{
             left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 15}s`,
-            fontSize: `${Math.random() * 20 + 10}px`,
+            animationDelay: `${Math.random() * 10}s`,
+            fontSize: `${Math.random() * 30 + 20}px`,
           }}
         />
       ))}
@@ -32,7 +32,7 @@ const FloatingElements = () => {
           className="floating-letter"
           style={{
             left: `${20 + i * 60}%`,
-            animationDelay: `${Math.random() * 20}s`,
+            animationDelay: `${Math.random() * 15}s`,
           }}
         >
           {letter}
