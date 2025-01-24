@@ -17,12 +17,20 @@ const Index = () => {
             <p className="text-gray-700">
               Welcome to our special place. I made this website just for you.
             </p>
-            <Link to="/future-goals">
-              <Button className="mt-4" variant="outline">
-                <Heart className="mr-2 h-4 w-4" />
-                Our Future Together
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link to="/message">
+                <Button variant="outline">
+                  <Heart className="mr-2 h-4 w-4" />
+                  My Message To You
+                </Button>
+              </Link>
+              <Link to="/future-goals">
+                <Button variant="outline">
+                  <Heart className="mr-2 h-4 w-4" />
+                  Our Future Together
+                </Button>
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>
