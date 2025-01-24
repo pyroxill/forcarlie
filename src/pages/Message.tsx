@@ -12,7 +12,7 @@ const Message = () => {
     setTimeout(() => {
       setShowLetters(false);
       setIsOpen(true);
-    }, 2000);
+    }, 1000); // Changed from 2000ms to 1000ms
   };
 
   return (
@@ -46,7 +46,7 @@ const Message = () => {
                       x: i === 0 ? -50 : 50,
                       rotate: i === 0 ? -45 : 45
                     }}
-                    transition={{ duration: 2, ease: "easeOut" }}
+                    transition={{ duration: 1, ease: "easeOut" }} // Changed from 2s to 1s
                   >
                     {letter}
                   </motion.div>
