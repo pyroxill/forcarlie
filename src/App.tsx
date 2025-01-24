@@ -6,8 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import Index from "./pages/Index";
-import FutureGoals from "./pages/FutureGoals";
 import Message from "./pages/Message";
+import MySongToYou from "./pages/MySongToYou";
 import PasswordProtection from "./components/PasswordProtection";
 import Timeline from "./components/Timeline";
 
@@ -56,9 +56,9 @@ const Navigation = () => {
         <Heart className="inline-block mr-2" size={16} />
         Message
       </Link>
-      <Link to="/future-goals" className="nav-link">
+      <Link to="/my-song" className="nav-link">
         <Heart className="inline-block mr-2" size={16} />
-        Future Goals
+        My Song to You
       </Link>
     </nav>
   );
@@ -94,7 +94,7 @@ const App = () => {
             <div className="content-container">
               <Routes>
                 <Route path="/message" element={<Message />} />
-                <Route path="/future-goals" element={<FutureGoals />} />
+                <Route path="/my-song" element={<MySongToYou />} />
                 <Route path="/" element={<Index />} />
               </Routes>
             </div>
