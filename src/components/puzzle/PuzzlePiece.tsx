@@ -89,7 +89,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
       path += ` v -${size}`;
     }
     
-    return path + ' Z';  // Removed the extra parenthesis here
+    return path + ' Z';
   };
 
   return (
@@ -105,10 +105,10 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
         ...position && {
           left: position.x,
           top: position.y,
-        },
-        ...getPieceShape(parseInt(pieceNumber))
+        }
       }}
     >
+      {/* Base image layer */}
       <img
         src={getImagePath(pieceNumber)}
         alt={`Puzzle piece ${pieceNumber}`}
@@ -118,6 +118,11 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
           console.error('Image failed to load:', e);
           console.log('Attempted to load:', getImagePath(pieceNumber));
         }}
+      />
+      {/* Overlay with puzzle piece shape */}
+      <div
+        className="absolute inset-0"
+        style={getPieceShape(parseInt(pieceNumber))}
       />
     </div>
   );
