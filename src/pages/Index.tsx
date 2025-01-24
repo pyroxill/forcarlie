@@ -9,7 +9,16 @@ const Index = () => {
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black via-love/20 to-black" />
       
-      {/* Decorative roses */}
+      {/* Centered roses */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <img 
+          src="/lovable-uploads/76e55ce5-330f-4a0a-95c8-8a3f2a9c449f.png" 
+          alt="Beautiful roses" 
+          className="w-64 h-64 opacity-30"
+        />
+      </div>
+
+      {/* Decorative roses animation */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="flowers-animation">
           {Array.from({ length: 12 }).map((_, index) => (
