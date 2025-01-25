@@ -24,10 +24,10 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         console.log("Audio playback failed:", error);
       });
       
-      // Show text for 5 seconds, fade out in last 3
+      // Show text for 8 seconds, fade out in last 3
       setTimeout(() => {
         setFadeOutText(true);
-      }, 2000);
+      }, 5000);
       
       // After text fades, show heart
       setTimeout(() => {
@@ -35,7 +35,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         setShowHeart(true);
         onUnlock(); // Unlock here to load index page behind heart
         
-        // Start heart fade out after 7 seconds
+        // Start heart fade out after 12 seconds
         setTimeout(() => {
           setFadeOutHeart(true);
           
@@ -43,8 +43,8 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
           setTimeout(() => {
             setShowHeart(false);
           }, 3000);
-        }, 7000);
-      }, 5000);
+        }, 12000);
+      }, 8000);
     } else {
       toast({
         variant: "destructive",
