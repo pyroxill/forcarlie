@@ -34,34 +34,33 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     return imageMapping[number];
   };
 
+  const CELL_WIDTH = 414 / 3;
+  const CELL_HEIGHT = 736 / 3;
+
   return (
     <div
       ref={drag}
       className={cn(
         'cursor-move transition-all duration-300',
-        initialSize === 'small' ? 'w-24 h-24' : 'w-[150px] h-[150px]',
         isDragging ? 'opacity-50' : 'opacity-100',
         position ? 'absolute' : 'relative'
       )}
       style={{
-        ...position && {
+        width: initialSize === 'small' ? '100px' : `${CELL_WIDTH}px`,
+        height: initialSize === 'small' ? '100px' : `${CELL_HEIGHT}px`,
+        ...(position && {
           left: position.x,
           top: position.y,
-        }
+        })
       }}
     >
-      <div className="w-full h-full relative">
-        <img
-          src={getImagePath(pieceNumber)}
-          alt={`Puzzle piece ${pieceNumber}`}
-          className="w-full h-full object-contain"
-          draggable={false}
-          onError={(e) => {
-            console.error('Image failed to load:', e);
-            console.log('Attempted to load:', getImagePath(pieceNumber));
-          }}
-        />
-      </div>
+      <img
+        src={getImagePath(pieceNumber)}
+        alt={`Puzzle piece ${pieceNumber}`}
+        className="w-full h-full object-cover"
+        draggable={false}
+        style={{ pointerEvents: 'none' }}
+      />
     </div>
   );
 }

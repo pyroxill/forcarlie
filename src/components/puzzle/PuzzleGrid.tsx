@@ -10,6 +10,11 @@ interface PuzzleGridProps {
 }
 
 export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
+  const GRID_WIDTH = 414;
+  const GRID_HEIGHT = 736;
+  const CELL_WIDTH = GRID_WIDTH / 3;
+  const CELL_HEIGHT = GRID_HEIGHT / 3;
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'puzzle-piece',
     drop: (item: { id: string }, monitor) => {
@@ -21,10 +26,9 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
         const x = offset.x - gridRect.left;
         const y = offset.y - gridRect.top;
         
-        const cellWidth = 414 / 3;  // Image width divided by 3
-        const cellHeight = 736 / 3;  // Image height divided by 3
-        const cellX = Math.floor(x / cellWidth) * cellWidth;
-        const cellY = Math.floor(y / cellHeight) * cellHeight;
+        // Calculate the grid cell position
+        const cellX = Math.floor(x / CELL_WIDTH) * CELL_WIDTH;
+        const cellY = Math.floor(y / CELL_HEIGHT) * CELL_HEIGHT;
         
         onPiecePlaced(item.id, cellX, cellY);
       }
@@ -39,24 +43,18 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
       id="puzzle-grid"
       ref={drop}
       className={cn(
-        'relative w-[414px] h-[736px] mx-auto rounded-lg transition-colors',
-        'grid grid-cols-3 grid-rows-3',
+        'relative mx-auto rounded-lg transition-colors overflow-hidden',
         isOver ? 'bg-white/10' : 'bg-white/5'
       )}
-      style={{ touchAction: 'none' }}
+      style={{
+        width: `${GRID_WIDTH}px`,
+        height: `${GRID_HEIGHT}px`,
+        display: 'grid',
+        gridTemplateColumns: `repeat(3, ${CELL_WIDTH}px)`,
+        gridTemplateRows: `repeat(3, ${CELL_HEIGHT}px)`,
+        gap: '0'
+      }}
     >
-      {/* Grid cells */}
-      {Array.from({ length: 9 }).map((_, index) => (
-        <div
-          key={index}
-          className="relative"
-          style={{
-            width: `${414/3}px`,
-            height: `${736/3}px`
-          }}
-        />
-      ))}
-      
       {/* Placed pieces */}
       {Object.entries(placedPieces).map(([pieceId, position]) => (
         <PuzzlePiece
