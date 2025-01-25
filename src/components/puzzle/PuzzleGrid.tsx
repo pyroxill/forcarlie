@@ -21,7 +21,6 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
         const x = offset.x - gridRect.left;
         const y = offset.y - gridRect.top;
         
-        // Calculate which cell in the 3x3 grid the piece was dropped in
         const cellWidth = gridRect.width / 3;
         const cellHeight = gridRect.height / 3;
         const cellX = Math.floor(x / cellWidth) * cellWidth;
@@ -41,7 +40,7 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
       ref={drop}
       className={cn(
         'relative w-full aspect-square max-w-[450px] mx-auto rounded-lg transition-colors',
-        'grid grid-cols-3 grid-rows-3 gap-0',
+        'grid grid-cols-3 grid-rows-3',
         isOver ? 'bg-white/10' : 'bg-white/5'
       )}
       style={{ touchAction: 'none' }}
@@ -50,7 +49,7 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
       {Array.from({ length: 9 }).map((_, index) => (
         <div
           key={index}
-          className="relative border-0"
+          className="relative"
         />
       ))}
       

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +11,7 @@ import MySongToYou from "./pages/MySongToYou";
 import Reasons from "./pages/Reasons";
 import Reassurance from "./pages/Reassurance";
 import Puzzle from "./pages/Puzzle";
+import ExtraGame from "./pages/ExtraGame";
 import PasswordProtection from "./components/PasswordProtection";
 
 const queryClient = new QueryClient();
@@ -80,14 +81,15 @@ const Navigation = () => {
             <Link to="/puzzle" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
               <Heart className="inline-block mr-1" size={14} /> Puzzle 🧩
             </Link>
+            <Link to="/extra-game" className="nav-link text-base md:text-base font-medium whitespace-nowrap" onClick={() => setIsOpen(false)}>
+              <Heart className="inline-block mr-1" size={14} /> Extra Game 🎲
+            </Link>
           </div>
         </div>
       </div>
     </nav>
   );
 };
-
-// ... keep existing code (App component)
 
 const App = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -131,6 +133,7 @@ const App = () => {
                 <Route path="/reasons" element={<Reasons />} />
                 <Route path="/reassurance" element={<Reassurance />} />
                 <Route path="/puzzle" element={<Puzzle />} />
+                <Route path="/extra-game" element={<ExtraGame />} />
                 <Route path="/" element={<Index />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
