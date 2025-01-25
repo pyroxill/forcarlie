@@ -6,14 +6,15 @@ import { useToast } from "./ui/use-toast";
 const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [password, setPassword] = useState("");
   const [isUnlocking, setIsUnlocking] = useState(false);
-  const [showGrowingHeart, setShowGrowingHeart] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [showHeart, setShowHeart] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === "08/12/2024") {
       setIsUnlocking(true);
-      setShowGrowingHeart(true);
+      setShowText(true);
       
       // Try to play the unlock sound
       const audio = new Audio("/unlock-sound.mp3");
@@ -22,11 +23,15 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         console.log("Audio playback failed:", error);
       });
       
-      // Show growing heart for 10 seconds then unlock
+      // Show text for 5 seconds
       setTimeout(() => {
-        setShowGrowingHeart(false);
-        onUnlock();
-      }, 10000);
+        setShowText(false);
+        setShowHeart(true);
+        // Show heart for 10 seconds then unlock
+        setTimeout(() => {
+          onUnlock();
+        }, 10000);
+      }, 5000);
     } else {
       toast({
         variant: "destructive",
@@ -62,15 +67,24 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     };
   }, []);
 
-  if (showGrowingHeart) {
+  if (showText) {
+    return (
+      <div className="password-protection">
+        <div className="text-container">
+          <h1 className="valentine-text">
+            Happy Valentines, Carlie<br/>- Jayden
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
+  if (showHeart) {
     return (
       <div className="password-protection">
         <div className="heart-container">
           <div className="heart-wrapper">
             <Heart className="big-heart" size={48} />
-            <div className="heart-text">
-              Happy Valentines, Carlie<br/>- Jayden
-            </div>
           </div>
         </div>
       </div>
