@@ -36,13 +36,15 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         // Start revealing background after 7 seconds
         setTimeout(() => {
           setFadeOutHeart(true);
+          
+          // Unlock after heart animation completes
+          setTimeout(() => {
+            onUnlock();
+            setTimeout(() => {
+              setShowHeart(false);
+            }, 3000);
+          }, 7000);
         }, 7000);
-        
-        // Unlock after heart animation completes
-        setTimeout(() => {
-          setShowHeart(false);
-          onUnlock();
-        }, 10000);
       }, 5000);
     } else {
       toast({
