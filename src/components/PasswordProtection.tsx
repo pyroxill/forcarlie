@@ -18,7 +18,6 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       setIsUnlocking(true);
       setShowText(true);
       
-      // Try to play the unlock sound
       const audio = new Audio("/unlock-sound.mp3");
       audio.volume = 0.3;
       audio.play().catch(error => {
@@ -54,7 +53,6 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     }
   };
 
-  // Background music setup
   useEffect(() => {
     console.log("Setting up background music");
     const bgMusic = new Audio("/lovable-uploads/background-music.mp3");

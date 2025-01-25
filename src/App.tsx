@@ -108,37 +108,39 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {!isUnlocked && <PasswordProtection onUnlock={handleUnlock} />}
-        {showUnlockAnimation && (
-          <div className="unlock-animation">
-            <div className="animate-flower">
-              <div className="flower-petal petal-1"></div>
-              <div className="flower-petal petal-2"></div>
-              <div className="flower-petal petal-3"></div>
-              <div className="flower-petal petal-4"></div>
-              <div className="flower-petal petal-5"></div>
-              <div className="flower-petal petal-6"></div>
-              <div className="flower-center"></div>
-            </div>
-          </div>
-        )}
-        <div className={`transition-opacity duration-1000 ${isUnlocked ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="relative min-h-screen">
           <BrowserRouter>
-            <FloatingElements />
-            <Navigation />
-            <div className="content-container">
-              <Routes>
-                <Route path="/message" element={<Message />} />
-                <Route path="/my-song" element={<MySongToYou />} />
-                <Route path="/reasons" element={<Reasons />} />
-                <Route path="/reassurance" element={<Reassurance />} />
-                <Route path="/puzzle" element={<Puzzle />} />
-                <Route path="/extra-game" element={<ExtraGame />} />
-                <Route path="/" element={<Index />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
+            <div className={`transition-opacity duration-1000 ${isUnlocked ? 'opacity-100' : 'opacity-0'}`}>
+              <FloatingElements />
+              <Navigation />
+              <div className="content-container">
+                <Routes>
+                  <Route path="/message" element={<Message />} />
+                  <Route path="/my-song" element={<MySongToYou />} />
+                  <Route path="/reasons" element={<Reasons />} />
+                  <Route path="/reassurance" element={<Reassurance />} />
+                  <Route path="/puzzle" element={<Puzzle />} />
+                  <Route path="/extra-game" element={<ExtraGame />} />
+                  <Route path="/" element={<Index />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </div>
             </div>
           </BrowserRouter>
+          {!isUnlocked && <PasswordProtection onUnlock={handleUnlock} />}
+          {showUnlockAnimation && (
+            <div className="unlock-animation">
+              <div className="animate-flower">
+                <div className="flower-petal petal-1"></div>
+                <div className="flower-petal petal-2"></div>
+                <div className="flower-petal petal-3"></div>
+                <div className="flower-petal petal-4"></div>
+                <div className="flower-petal petal-5"></div>
+                <div className="flower-petal petal-6"></div>
+                <div className="flower-center"></div>
+              </div>
+            </div>
+          )}
         </div>
       </TooltipProvider>
     </QueryClientProvider>
