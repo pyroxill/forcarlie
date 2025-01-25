@@ -7,6 +7,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [password, setPassword] = useState("");
   const [isUnlocking, setIsUnlocking] = useState(false);
   const [showGrowingHeart, setShowGrowingHeart] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,12 +21,16 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       audio.volume = 0.3;
       audio.play().catch(error => {
         console.log("Audio playback failed:", error);
-        // Continue with unlock animation even if sound fails
       });
       
       setTimeout(() => {
-        onUnlock();
-      }, 5000); // Changed from 10000 to 5000 milliseconds
+        setShowGrowingHeart(false);
+        setShowMessage(true);
+        setTimeout(() => {
+          setShowMessage(false);
+          onUnlock();
+        }, 3000);
+      }, 2000);
     } else {
       toast({
         variant: "destructive",
@@ -35,13 +40,48 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     }
   };
 
+  // Background music setup
+  useState(() => {
+    const bgMusic = new Audio("/background-music.mp3");
+    bgMusic.loop = true;
+    bgMusic.volume = 0.3;
+    
+    const playMusic = () => {
+      bgMusic.play().catch(error => {
+        console.log("Background music playback failed:", error);
+      });
+    };
+
+    // Try to play music on first user interaction
+    document.addEventListener('click', playMusic, { once: true });
+    document.addEventListener('keydown', playMusic, { once: true });
+
+    return () => {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      document.removeEventListener('click', playMusic);
+      document.removeEventListener('keydown', playMusic);
+    };
+  }, []);
+
+  if (showMessage) {
+    return (
+      <div className="password-protection">
+        <div className="flex items-center justify-center min-h-screen">
+          <h1 className="text-4xl text-white text-center font-bold animate-fade-in">
+            Happy Valentines, Carlie<br/>- Jayden
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="password-protection">
       {showGrowingHeart && (
         <div className="heart-container">
           <div className="heart-wrapper">
             <Heart className="big-heart" size={48} />
-            <span className="heart-text">C+J</span>
           </div>
         </div>
       )}
