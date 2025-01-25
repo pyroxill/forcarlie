@@ -16,33 +16,32 @@ const Index = () => {
       setIsMobile(window.innerWidth < 768);
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
     const handleUserInteraction = () => {
       if (audioRef.current && !isPlaying) {
         audioRef.current.volume = 0.3;
-        audioRef.current
-          .play()
+        audioRef.current.play()
           .then(() => {
             setIsPlaying(true);
-            document.removeEventListener("click", handleUserInteraction);
-            document.removeEventListener("keydown", handleUserInteraction);
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('keydown', handleUserInteraction);
           })
-          .catch((error) => {
+          .catch(error => {
             console.log("Audio playback failed:", error);
           });
       }
     };
 
-    document.addEventListener("click", handleUserInteraction);
-    document.addEventListener("keydown", handleUserInteraction);
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('keydown', handleUserInteraction);
 
     return () => {
-      document.removeEventListener("click", handleUserInteraction);
-      document.removeEventListener("keydown", handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
     };
   }, [isPlaying]);
 
@@ -58,25 +57,36 @@ const Index = () => {
   }, [showYay]);
 
   const handleNoHover = () => {
-    const randomX = Math.random() * (window.innerWidth - 100);
-    const randomY = Math.random() * (window.innerHeight - 100);
-    setNoPosition({ x: randomX, y: randomY });
+    if (isMobile) {
+      setNoPosition({
+        x: Math.random() * (window.innerWidth - 100),
+        y: Math.random() * (window.innerHeight - 100)
+      });
+    } else {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      setNoPosition({ x, y });
+    }
   };
 
   return (
     <div className="min-h-screen relative">
-      <audio ref={audioRef} loop src="/background-music.mp3" />
+      <audio
+        ref={audioRef}
+        loop
+        src="/background-music.mp3"
+      />
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="mb-8">
           <RelationshipTimer />
         </div>
         <Timeline />
-
+        
         <div className="mt-16 text-center">
           <h2 className="text-3xl font-bold text-white mb-8">Together Forever...???</h2>
-
+          
           <div className="flex justify-center mb-8">
-            <img
+            <img 
               src="/lovable-uploads/72ee4165-cb3d-49f3-9d5a-96fd994f92c1.png"
               alt="Cute teddy bear with heart"
               className="w-64 h-64 object-contain rounded-lg"
@@ -90,13 +100,13 @@ const Index = () => {
             >
               Yes
             </button>
-
+            
             <button
               onMouseEnter={handleNoHover}
               onTouchStart={handleNoHover}
               className="text-2xl font-bold text-white transition-all duration-300"
               style={{
-                position: noPosition.x ? "fixed" : "relative",
+                position: noPosition.x ? 'fixed' : 'relative',
                 left: noPosition.x,
                 top: noPosition.y,
               }}
@@ -119,7 +129,7 @@ const Index = () => {
                       left: `${Math.random() * 100}%`,
                       top: `${Math.random() * 100}%`,
                       transform: `rotate(${Math.random() * 360}deg)`,
-                      transformOrigin: "center",
+                      transformOrigin: 'center',
                       animationDelay: `${Math.random() * 0.5}s`,
                       fontSize: `${Math.random() * 30 + 20}px`,
                     }}
