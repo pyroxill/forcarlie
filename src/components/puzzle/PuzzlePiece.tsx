@@ -105,7 +105,7 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
         <img
           src={getImagePath(pieceNumber)}
           alt={`Puzzle piece ${pieceNumber}`}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
           draggable={false}
           onError={(e) => {
             console.error('Image failed to load:', e);
