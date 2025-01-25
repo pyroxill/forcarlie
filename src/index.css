@@ -97,7 +97,7 @@
   position: relative;
   transform-origin: center;
   color: white;
-  animation: heart-grow 5s ease-in-out forwards;
+  animation: heart-grow 10s ease-in-out forwards;
 }
 
 .heart-text {

@@ -7,7 +7,6 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [password, setPassword] = useState("");
   const [isUnlocking, setIsUnlocking] = useState(false);
   const [showGrowingHeart, setShowGrowingHeart] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,16 +22,11 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         console.log("Audio playback failed:", error);
       });
       
-      // Show growing heart for 5 seconds
+      // Show growing heart for 10 seconds then unlock
       setTimeout(() => {
         setShowGrowingHeart(false);
-        setShowMessage(true);
-        // Show message for 3 seconds then unlock
-        setTimeout(() => {
-          setShowMessage(false);
-          onUnlock();
-        }, 3000);
-      }, 5000);
+        onUnlock();
+      }, 10000);
     } else {
       toast({
         variant: "destructive",
@@ -44,11 +38,13 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   // Background music setup
   useEffect(() => {
+    console.log("Setting up background music");
     const bgMusic = new Audio("/lovable-uploads/background-music.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.3;
     
     const playMusic = () => {
+      console.log("Attempting to play music");
       bgMusic.play().catch(error => {
         console.log("Background music playback failed:", error);
       });
@@ -66,13 +62,16 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     };
   }, []);
 
-  if (showMessage) {
+  if (showGrowingHeart) {
     return (
       <div className="password-protection">
-        <div className="flex items-center justify-center min-h-screen">
-          <h1 className="text-4xl text-white text-center font-bold animate-fade-in">
-            Happy Valentines, Carlie<br/>- Jayden
-          </h1>
+        <div className="heart-container">
+          <div className="heart-wrapper">
+            <Heart className="big-heart" size={48} />
+            <div className="heart-text">
+              Happy Valentines, Carlie<br/>- Jayden
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -80,35 +79,26 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   return (
     <div className="password-protection">
-      {showGrowingHeart && (
-        <div className="heart-container">
-          <div className="heart-wrapper">
-            <Heart className="big-heart" size={48} />
+      <div className="password-container">
+        <div className="flex flex-col items-center gap-6">
+          <div className="relative">
+            <Heart className="w-16 h-16 text-white animate-pulse" />
           </div>
-        </div>
-      )}
-      {!isUnlocking && (
-        <div className="password-container">
-          <div className="flex flex-col items-center gap-6">
-            <div className="relative">
-              <Heart className="w-16 h-16 text-white animate-pulse" />
-            </div>
-            <div className="text-white text-center mb-4">
-              <h2 className="text-xl font-semibold mb-2">Enter Password 🔒</h2>
-              <p className="text-sm opacity-80">Hint: Our Anniversary ❤️</p>
-            </div>
-            <form onSubmit={handleSubmit} className="w-64">
-              <Input
-                type="text"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-white/10 border-white/20 text-white placeholder-white/50 focus:border-[#D946EF]"
-                placeholder="DD/MM/YYYY"
-              />
-            </form>
+          <div className="text-white text-center mb-4">
+            <h2 className="text-xl font-semibold mb-2">Enter Password 🔒</h2>
+            <p className="text-sm opacity-80">Hint: Our Anniversary ❤️</p>
           </div>
+          <form onSubmit={handleSubmit} className="w-64">
+            <Input
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="bg-white/10 border-white/20 text-white placeholder-white/50 focus:border-[#D946EF]"
+              placeholder="DD/MM/YYYY"
+            />
+          </form>
         </div>
-      )}
+      </div>
     </div>
   );
 };
