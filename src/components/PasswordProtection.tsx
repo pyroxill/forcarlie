@@ -39,8 +39,9 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
           setFadeOutHeart(true);
         }, 7000);
         
-        // Unlock after full 10 seconds
+        // Unlock after heart animation completes
         setTimeout(() => {
+          setShowHeart(false);
           onUnlock();
         }, 10000);
       }, 5000);

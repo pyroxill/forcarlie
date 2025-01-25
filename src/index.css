@@ -60,6 +60,7 @@
   }
   100% {
     opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -83,15 +84,18 @@
   }
   100% {
     opacity: 0;
+    visibility: hidden;
   }
 }
 
 @keyframes reveal-background {
   0% {
     backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(234, 56, 76, 0.1) 100%);
   }
   100% {
     backdrop-filter: blur(0px);
+    background: transparent;
   }
 }
 
@@ -148,7 +152,7 @@
 .password-protection {
   @apply fixed inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-center;
   background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(234, 56, 76, 0.1) 100%);
-  transition: backdrop-filter 3s ease-in-out;
+  transition: all 3s ease-in-out;
 }
 
 .password-protection.reveal-background {
@@ -230,6 +234,3 @@
 .animate-float-up {
   animation: float-up 3s linear infinite;
 }
-
-
-
