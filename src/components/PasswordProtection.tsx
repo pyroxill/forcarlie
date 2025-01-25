@@ -10,6 +10,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [showHeart, setShowHeart] = useState(false);
   const [fadeOutText, setFadeOutText] = useState(false);
   const [fadeOutHeart, setFadeOutHeart] = useState(false);
+  const [enlargeHeart, setEnlargeHeart] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -17,33 +18,42 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     if (password === "08/12/2024") {
       setIsUnlocking(true);
       setShowText(true);
-      
+
       const audio = new Audio("/unlock-sound.mp3");
       audio.volume = 0.3;
-      audio.play().catch(error => {
+      audio.play().catch((error) => {
         console.log("Audio playback failed:", error);
       });
-      
-      // Show text for 8 seconds, fade out in last 3
+
+      // Show text for 8 seconds, fade out in the last 3 seconds
       setTimeout(() => {
         setFadeOutText(true);
       }, 5000);
-      
+
       // After text fades, show heart
       setTimeout(() => {
         setShowText(false);
         setShowHeart(true);
-        onUnlock(); // Unlock here to load index page behind heart
-        
-        // Start heart fade out after 12 seconds
+
+        // Enlarge heart for 10 seconds
+        setTimeout(() => {
+          setEnlargeHeart(true);
+        }, 0);
+
+        // Fade out the heart and reveal index page after 10 seconds
         setTimeout(() => {
           setFadeOutHeart(true);
-          
+
+          // Reveal index page when 3 seconds remain (last 3 seconds of heart fade-out)
+          setTimeout(() => {
+            onUnlock();
+          }, 7000);
+
           // Remove heart component after fade animation
           setTimeout(() => {
             setShowHeart(false);
-          }, 3000);
-        }, 12000);
+          }, 10000);
+        }, 10000);
       }, 8000);
     } else {
       toast({
@@ -59,22 +69,22 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     const bgMusic = new Audio("/lovable-uploads/background-music.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.3;
-    
+
     const playMusic = () => {
       console.log("Attempting to play music");
-      bgMusic.play().catch(error => {
+      bgMusic.play().catch((error) => {
         console.log("Background music playback failed:", error);
       });
     };
 
-    document.addEventListener('click', playMusic, { once: true });
-    document.addEventListener('keydown', playMusic, { once: true });
+    document.addEventListener("click", playMusic, { once: true });
+    document.addEventListener("keydown", playMusic, { once: true });
 
     return () => {
       bgMusic.pause();
       bgMusic.currentTime = 0;
-      document.removeEventListener('click', playMusic);
-      document.removeEventListener('keydown', playMusic);
+      document.removeEventListener("click", playMusic);
+      document.removeEventListener("keydown", playMusic);
     };
   }, []);
 
@@ -82,8 +92,8 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     return (
       <div className="password-protection">
         <div className="text-container">
-          <h1 className={`valentine-text ${fadeOutText ? 'fade-out' : ''}`}>
-            Happy Valentines, Carlie<br/>- Jayden
+          <h1 className={`valentine-text ${fadeOutText ? "fade-out" : ""}`}>
+            Happy Valentines, Carlie<br />- Jayden
           </h1>
         </div>
       </div>
@@ -92,10 +102,15 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   if (showHeart) {
     return (
-      <div className={`password-protection ${fadeOutHeart ? 'reveal-background' : ''}`}>
+      <div
+        className={`password-protection ${fadeOutHeart ? "reveal-background" : ""}`}
+      >
         <div className="heart-container">
           <div className="heart-wrapper">
-            <Heart className={`big-heart ${fadeOutHeart ? 'fade-out' : ''}`} size={48} />
+            <Heart
+              className={`big-heart ${fadeOutHeart ? "fade-out" : ""} ${enlargeHeart ? "enlarge" : ""}`}
+              size={48}
+            />
           </div>
         </div>
       </div>
