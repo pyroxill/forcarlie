@@ -23,14 +23,16 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         console.log("Audio playback failed:", error);
       });
       
+      // Show growing heart for 5 seconds
       setTimeout(() => {
         setShowGrowingHeart(false);
         setShowMessage(true);
+        // Show message for 3 seconds then unlock
         setTimeout(() => {
           setShowMessage(false);
           onUnlock();
         }, 3000);
-      }, 2000);
+      }, 5000);
     } else {
       toast({
         variant: "destructive",
@@ -42,7 +44,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   // Background music setup
   useEffect(() => {
-    const bgMusic = new Audio("/background-music.mp3");
+    const bgMusic = new Audio("/lovable-uploads/background-music.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.3;
     
