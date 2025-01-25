@@ -29,21 +29,20 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         setFadeOutText(true);
       }, 2000);
       
+      // After text fades, show heart
       setTimeout(() => {
         setShowText(false);
         setShowHeart(true);
+        onUnlock(); // Unlock here to load index page behind heart
         
-        // Start revealing background after 7 seconds
+        // Start heart fade out after 7 seconds
         setTimeout(() => {
           setFadeOutHeart(true);
           
-          // Unlock after heart animation completes
+          // Remove heart component after fade animation
           setTimeout(() => {
-            onUnlock();
-            setTimeout(() => {
-              setShowHeart(false);
-            }, 3000);
-          }, 7000);
+            setShowHeart(false);
+          }, 3000);
         }, 7000);
       }, 5000);
     } else {

@@ -99,6 +99,7 @@
     backdrop-filter: blur(0px);
     background: transparent;
     pointer-events: none;
+    visibility: hidden;
   }
 }
 
