@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import { Input } from "./ui/input";
 import { useToast } from "./ui/use-toast";
@@ -41,7 +41,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   };
 
   // Background music setup
-  useState(() => {
+  useEffect(() => {
     const bgMusic = new Audio("/background-music.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.3;
