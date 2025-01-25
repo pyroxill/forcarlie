@@ -33,10 +33,13 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       setTimeout(() => {
         setShowText(false);
         setShowHeart(true);
-        // Show heart for 10 seconds, fade out in last 3
+        
+        // Start revealing background after 7 seconds
         setTimeout(() => {
           setFadeOutHeart(true);
         }, 7000);
+        
+        // Unlock after full 10 seconds
         setTimeout(() => {
           onUnlock();
         }, 10000);
