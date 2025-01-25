@@ -1,6 +1,6 @@
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PuzzlePiece } from '@/components/puzzle/PuzzlePiece';
 import { PuzzleGrid } from '@/components/puzzle/PuzzleGrid';
 import { Button } from '@/components/ui/button';
@@ -10,24 +10,6 @@ export default function Puzzle() {
   const [placedPieces, setPlacedPieces] = useState<{
     [key: string]: { x: number; y: number };
   }>({});
-  const [shuffledPieces, setShuffledPieces] = useState<number[]>([]);
-
-  // Function to shuffle array using Fisher-Yates algorithm
-  const shuffleArray = (array: number[]) => {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-  };
-
-  // Reset and shuffle pieces on component mount
-  useEffect(() => {
-    const pieces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    setShuffledPieces(shuffleArray(pieces));
-    setPlacedPieces({});
-  }, []);
 
   const handlePiecePlaced = (pieceId: string, x: number, y: number) => {
     setPlacedPieces(prev => ({
@@ -39,7 +21,6 @@ export default function Puzzle() {
 
   const handleReset = () => {
     setPlacedPieces({});
-    setShuffledPieces(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]));
     toast("Puzzle reset!");
   };
 
@@ -59,20 +40,21 @@ export default function Puzzle() {
           </div>
           
           <div className="flex flex-col gap-4">
+            {/* Grid appears first on mobile */}
             <div className="w-full">
               <PuzzleGrid onPiecePlaced={handlePiecePlaced} placedPieces={placedPieces} />
             </div>
             
+            {/* Pieces container */}
             <div className="bg-white/10 p-2 rounded-lg backdrop-blur-sm w-full">
               <h2 className="text-xl font-semibold text-white mb-2">Pieces</h2>
               <div className="grid grid-cols-3 gap-0 justify-items-center">
-                {shuffledPieces.map((pieceNumber) => (
-                  !placedPieces[`Piece ${pieceNumber}`] && (
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((piece) => (
+                  !placedPieces[`Piece ${piece}`] && (
                     <PuzzlePiece
-                      key={pieceNumber}
-                      id={`Piece ${pieceNumber}`}
+                      key={piece}
+                      id={`Piece ${piece}`}
                       initialSize="small"
-                      pieceNumber={pieceNumber}
                     />
                   )
                 ))}

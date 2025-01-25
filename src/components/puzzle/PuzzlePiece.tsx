@@ -3,12 +3,11 @@ import { cn } from '@/lib/utils';
 
 interface PuzzlePieceProps {
   id: string;
-  initialSize: 'small' | 'large';
+  initialSize?: 'small' | 'large';
   position?: { x: number; y: number };
-  pieceNumber?: number;
 }
 
-export function PuzzlePiece({ id, initialSize, position, pieceNumber }: PuzzlePieceProps) {
+export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePieceProps) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'puzzle-piece',
     item: { id },
@@ -17,22 +16,21 @@ export function PuzzlePiece({ id, initialSize, position, pieceNumber }: PuzzlePi
     }),
   }));
 
-  // Extract the number from the piece ID if pieceNumber is not provided
-  const getImagePath = (number?: number) => {
-    if (!number) {
-      number = parseInt(id.replace('Piece ', ''));
-    }
-    const imageMapping: { [key: number]: string } = {
-      1: '/lovable-uploads/931af360-019c-4de1-b058-20570acc8883.png',
-      2: '/lovable-uploads/72ee4165-cb3d-49f3-9d5a-96fd994f92c1.png',
-      3: '/lovable-uploads/76e55ce5-330f-4a0a-95c8-8a3f2a9c449f.png',
-      4: '/lovable-uploads/71eb8d54-dfa7-4b55-83fe-bd8a8f00df4e.png',
-      5: '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png',
-      6: '/lovable-uploads/59575ba7-1a5e-454f-a849-9e942e8b9ce6.png',
-      7: '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png',
-      8: '/lovable-uploads/9676ea56-3810-4e87-adac-ff22942626c8.png',
-      9: '/lovable-uploads/ab684a84-2369-4a5a-94aa-c7ad974a57d5.png',
+  const pieceNumber = id.split(' ')[1];
+  
+  const getImagePath = (number: string) => {
+    const imageMapping: { [key: string]: string } = {
+      '1': '/lovable-uploads/71eb8d54-dfa7-4b55-83fe-bd8a8f00df4e.png',
+      '2': '/lovable-uploads/59575ba7-1a5e-454f-a849-9e942e8b9ce6.png',
+      '3': '/lovable-uploads/ab684a84-2369-4a5a-94aa-c7ad974a57d5.png',
+      '4': '/lovable-uploads/5e5e478c-0365-477d-9956-32539abc0815.png',
+      '5': '/lovable-uploads/2bb51a96-d0c1-471e-ad22-02495638dc48.png',
+      '6': '/lovable-uploads/d08f0ce6-0963-40f1-873e-3e2b4879817b.png',
+      '7': '/lovable-uploads/9676ea56-3810-4e87-adac-ff22942626c8.png',
+      '8': '/lovable-uploads/931af360-019c-4de1-b058-20570acc8883.png',
+      '9': '/lovable-uploads/d6ba01db-521c-44f3-a9bd-623d59a2ca3e.png'
     };
+
     return imageMapping[number];
   };
 
@@ -58,7 +56,7 @@ export function PuzzlePiece({ id, initialSize, position, pieceNumber }: PuzzlePi
     >
       <img
         src={getImagePath(pieceNumber)}
-        alt={`Puzzle piece ${pieceNumber || id.replace('Piece ', '')}`}
+        alt={`Puzzle piece ${pieceNumber}`}
         className="w-full h-full object-cover"
         draggable={false}
         style={{ pointerEvents: 'none' }}
