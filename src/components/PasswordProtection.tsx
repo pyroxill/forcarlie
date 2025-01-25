@@ -8,6 +8,8 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
   const [isUnlocking, setIsUnlocking] = useState(false);
   const [showText, setShowText] = useState(false);
   const [showHeart, setShowHeart] = useState(false);
+  const [fadeOutText, setFadeOutText] = useState(false);
+  const [fadeOutHeart, setFadeOutHeart] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,11 +25,18 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
         console.log("Audio playback failed:", error);
       });
       
-      // Show text for 5 seconds
+      // Show text for 5 seconds, fade out in last 3
+      setTimeout(() => {
+        setFadeOutText(true);
+      }, 2000);
+      
       setTimeout(() => {
         setShowText(false);
         setShowHeart(true);
-        // Show heart for 10 seconds then unlock
+        // Show heart for 10 seconds, fade out in last 3
+        setTimeout(() => {
+          setFadeOutHeart(true);
+        }, 7000);
         setTimeout(() => {
           onUnlock();
         }, 10000);
@@ -55,7 +64,6 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       });
     };
 
-    // Try to play music on first user interaction
     document.addEventListener('click', playMusic, { once: true });
     document.addEventListener('keydown', playMusic, { once: true });
 
@@ -71,7 +79,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
     return (
       <div className="password-protection">
         <div className="text-container">
-          <h1 className="valentine-text">
+          <h1 className={`valentine-text ${fadeOutText ? 'fade-out' : ''}`}>
             Happy Valentines, Carlie<br/>- Jayden
           </h1>
         </div>
@@ -81,10 +89,10 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
 
   if (showHeart) {
     return (
-      <div className="password-protection">
+      <div className={`password-protection ${fadeOutHeart ? 'reveal-background' : ''}`}>
         <div className="heart-container">
           <div className="heart-wrapper">
-            <Heart className="big-heart" size={48} />
+            <Heart className={`big-heart ${fadeOutHeart ? 'fade-out' : ''}`} size={48} />
           </div>
         </div>
       </div>

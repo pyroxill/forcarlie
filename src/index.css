@@ -54,6 +54,15 @@
   }
 }
 
+@keyframes text-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes heart-grow {
   0% {
     transform: scale(0.1);
@@ -65,6 +74,24 @@
   100% {
     transform: scale(20);
     opacity: 1;
+  }
+}
+
+@keyframes heart-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reveal-background {
+  0% {
+    backdrop-filter: blur(8px);
+  }
+  100% {
+    backdrop-filter: blur(0px);
   }
 }
 
@@ -84,6 +111,10 @@
   font-weight: bold;
   text-align: center;
   animation: text-grow 5s ease-in-out forwards;
+}
+
+.valentine-text.fade-out {
+  animation: text-fade-out 3s ease-in-out forwards;
 }
 
 .heart-container {
@@ -110,38 +141,18 @@
   animation: heart-grow 10s ease-in-out forwards;
 }
 
-.heart-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) translateY(-1px);
-  color: white;
-  font-size: 0.4em;
-  font-weight: bold;
-  z-index: 10;
-  white-space: nowrap;
-  animation: heart-grow 10s ease-in-out forwards;
+.big-heart.fade-out {
+  animation: heart-fade-out 3s ease-in-out forwards;
 }
 
 .password-protection {
   @apply fixed inset-0 z-50 backdrop-blur-md flex flex-col items-center justify-center;
   background: linear-gradient(135deg, rgba(217, 70, 239, 0.1) 0%, rgba(234, 56, 76, 0.1) 100%);
+  transition: backdrop-filter 3s ease-in-out;
 }
 
-.password-container {
-  @apply relative bg-white/20 p-8 rounded-2xl backdrop-blur-md border border-white/20;
-  animation: fade-scale-in 0.5s ease-out forwards;
-}
-
-@keyframes fade-scale-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.password-protection.reveal-background {
+  animation: reveal-background 3s ease-in-out forwards;
 }
 
 .floating-hearts {
@@ -219,5 +230,6 @@
 .animate-float-up {
   animation: float-up 3s linear infinite;
 }
+
 
 
