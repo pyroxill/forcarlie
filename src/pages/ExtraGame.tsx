@@ -28,8 +28,7 @@ export default function ExtraGame() {
     <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-2xl mx-auto space-y-8">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-white">Intimate Moments</h1>
-          <p className="text-white/80">Share special moments together with these romantic challenges</p>
+          <h1 className="text-4xl font-bold text-white">Intimate Moments 🥰</h1>
         </div>
 
         <div className="bg-white/10 p-6 rounded-xl backdrop-blur-md">
