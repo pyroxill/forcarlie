@@ -34,57 +34,6 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
     return imageMapping[number];
   };
 
-  const getPieceShape = (pieceNum: number) => {
-    const row = Math.ceil(pieceNum / 3);
-    const col = ((pieceNum - 1) % 3) + 1;
-    
-    const edges = {
-      top: row > 1,
-      right: col < 3,
-      bottom: row < 3,
-      left: col > 1
-    };
-
-    return {
-      clipPath: `path("${generatePuzzlePath(edges)}")`,
-      filter: 'drop-shadow(0 1px 2px rgb(0 0 0 / 0.3))',
-      overflow: 'hidden'
-    };
-  };
-
-  const generatePuzzlePath = (edges: { top: boolean; right: boolean; bottom: boolean; left: boolean }) => {
-    const size = 100;
-    const tabSize = 15;
-    
-    let path = `M 0,0`;
-    
-    if (edges.top) {
-      path += ` h ${size * 0.3} q ${tabSize},0 ${tabSize},-${tabSize} q ${tabSize},-${tabSize} ${tabSize},0 h ${size * 0.3}`;
-    } else {
-      path += ` h ${size}`;
-    }
-    
-    if (edges.right) {
-      path += ` v ${size * 0.3} q 0,${tabSize} ${tabSize},${tabSize} q ${tabSize},${tabSize} 0,${tabSize} v ${size * 0.3}`;
-    } else {
-      path += ` v ${size}`;
-    }
-    
-    if (edges.bottom) {
-      path += ` h -${size * 0.3} q -${tabSize},0 -${tabSize},${tabSize} q -${tabSize},${tabSize} -${tabSize},0 h -${size * 0.3}`;
-    } else {
-      path += ` h -${size}`;
-    }
-    
-    if (edges.left) {
-      path += ` v -${size * 0.3} q 0,-${tabSize} -${tabSize},-${tabSize} q -${tabSize},-${tabSize} 0,-${tabSize} v -${size * 0.3}`;
-    } else {
-      path += ` v -${size}`;
-    }
-    
-    return path + ' Z';
-  };
-
   return (
     <div
       ref={drag}
@@ -111,10 +60,6 @@ export function PuzzlePiece({ id, initialSize = 'small', position }: PuzzlePiece
             console.error('Image failed to load:', e);
             console.log('Attempted to load:', getImagePath(pieceNumber));
           }}
-        />
-        <div
-          className="absolute inset-0"
-          style={getPieceShape(parseInt(pieceNumber))}
         />
       </div>
     </div>
