@@ -41,7 +41,7 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
       ref={drop}
       className={cn(
         'relative w-full aspect-square max-w-[450px] mx-auto rounded-lg transition-colors',
-        'grid grid-cols-3 grid-rows-3 gap-0.5',
+        'grid grid-cols-3 grid-rows-3 gap-0',
         isOver ? 'bg-white/10' : 'bg-white/5'
       )}
       style={{ touchAction: 'none' }}
@@ -50,7 +50,7 @@ export function PuzzleGrid({ onPiecePlaced, placedPieces }: PuzzleGridProps) {
       {Array.from({ length: 9 }).map((_, index) => (
         <div
           key={index}
-          className="relative border border-white/10"
+          className="relative border-0"
         />
       ))}
       

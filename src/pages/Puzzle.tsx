@@ -27,7 +27,7 @@ export default function Puzzle() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="min-h-screen p-4 md:p-8">
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="max-w-6xl mx-auto space-y-4">
           <div className="flex justify-between items-center">
             <h1 className="text-4xl font-bold text-white">Puzzle Time!</h1>
             <Button 
@@ -46,9 +46,9 @@ export default function Puzzle() {
             </div>
             
             {/* Pieces container */}
-            <div className="bg-white/10 p-3 rounded-lg backdrop-blur-sm w-full">
-              <h2 className="text-xl font-semibold text-white mb-3">Pieces</h2>
-              <div className="grid grid-cols-3 gap-1 justify-items-center">
+            <div className="bg-white/10 p-2 rounded-lg backdrop-blur-sm w-full">
+              <h2 className="text-xl font-semibold text-white mb-2">Pieces</h2>
+              <div className="grid grid-cols-3 gap-0 justify-items-center">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((piece) => (
                   !placedPieces[`Piece ${piece}`] && (
                     <PuzzlePiece
