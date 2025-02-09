@@ -12,7 +12,14 @@ const questions = [
   "Take off one piece of clothing",
   "Give your partner a compliment about their body",
   "Demonstrate your favorite kiss",
-  "Share what attracts you most about your partner"
+  "Share what attracts you most about your partner",
+  "Give Oral to your partner for 1 minute",
+  "Demonstrate your favourite sex postion",
+  "Remove a piece of clothing",
+  "Whisper your most dirtiest thought about your partner", 
+  "Do whatever your partner says for 1 minute",
+  "Tease your partner for 1 minute", 
+  "Guide your partners hands wherever you want"
 ];
 
 export default function ExtraGame() {
