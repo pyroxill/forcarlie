@@ -51,6 +51,11 @@ const timelineEvents: TimelineEvent[] = [
     date: "17/1/2025",
     title: "Our First Date",
     description: "We went on our first date dinner at Nandos."
+  },
+  {
+    date: "14/2/2025",
+    title: "Our First Valentines",
+    description: "We celebrated our first valentines together."
   }
 ];
 
