@@ -83,7 +83,7 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       <div className="password-protection">
         <div className="text-container">
           <h1 className={`valentine-text ${fadeOutText ? 'fade-out' : ''}`}>
-            Happy Valentines, Carlie<br/>- Jayden
+            For Carlie <3 <br/>
           </h1>
         </div>
       </div>
