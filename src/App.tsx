@@ -31,6 +31,18 @@ const FloatingElements = () => {
           }}
         />
       ))}
+      {[...Array(30)].map((_, i) => (
+        <div
+          key={`petal-${i}`}
+          className="floating-petal"
+          style={{
+            left: `${Math.random() * 100}%`,
+            bottom: `-50px`,
+            animationDelay: `${Math.random() * 10}s`,
+            transform: `rotate(${Math.random() * 360}deg)`,
+          }}
+        />
+      ))}
       {['C', 'J'].map((letter, i) => (
         <div
           key={`letter-${letter}`}

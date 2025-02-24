@@ -103,6 +103,23 @@
   }
 }
 
+@keyframes float-petal {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(360deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
 .text-container {
   position: fixed;
   inset: 0;
@@ -188,6 +205,16 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   animation: float-up 12s linear infinite;
   opacity: 0.4;
+}
+
+.floating-petal {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle at 30% 30%, #FFB7C5 0%, #FF69B4 100%);
+  clip-path: path('M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z');
+  animation: float-petal 15s linear infinite;
+  opacity: 0;
 }
 
 @keyframes float-up {
