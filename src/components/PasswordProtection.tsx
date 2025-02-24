@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import { Input } from "./ui/input";
@@ -83,7 +84,8 @@ const PasswordProtection = ({ onUnlock }: { onUnlock: () => void }) => {
       <div className="password-protection">
         <div className="text-container">
           <h1 className={`valentine-text ${fadeOutText ? 'fade-out' : ''}`}>
-            For Carlie <3 <br/>
+            Happy Valentines, Carlie ❤️<br/>
+            - Jayden
           </h1>
         </div>
       </div>
